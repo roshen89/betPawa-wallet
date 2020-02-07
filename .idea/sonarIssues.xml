@@ -3,12 +3,127 @@
   <component name="issues">
     <option name="index">
       <map>
+        <entry key="/a.dummy">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/betPawa-wallet-proto/build.gradle">
           <value>
             <set />
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/betPawa-wallet-proto/src/main/proto/wallet.proto">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/betPawa-wallet-server/build.gradle">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/betPawa-wallet-server/src/main/java/com/betPawa/walllet/server/BetPawaWalletServerApplication.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/betPawa-wallet-server/src/main/java/com/betPawa/walllet/server/config/GlobalInterceptorConfiguration.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/betPawa-wallet-server/src/main/java/com/betPawa/walllet/server/config/HibernateConfig.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/betPawa-wallet-server/src/main/java/com/betPawa/walllet/server/config/ThreadPoolConfig.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/betPawa-wallet-server/src/main/java/com/betPawa/walllet/server/dto/BalanceResponseDTO.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/betPawa-wallet-server/src/main/java/com/betPawa/walllet/server/entity/Wallet.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/betPawa-wallet-server/src/main/java/com/betPawa/walllet/server/entity/WalletPK.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/betPawa-wallet-server/src/main/java/com/betPawa/walllet/server/exception/BPBaseException.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/betPawa-wallet-server/src/main/java/com/betPawa/walllet/server/exception/BetPawaBaseException.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/betPawa-wallet-server/src/main/java/com/betPawa/walllet/server/exception/BetPawaDataException.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/betPawa-wallet-server/src/main/java/com/betPawa/walllet/server/exception/BetPawaServiceException.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/betPawa-wallet-server/src/main/java/com/betPawa/walllet/server/exception/BetPawaValidationException.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/betPawa-wallet-server/src/main/java/com/betPawa/walllet/server/repository/WalletRepository.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/betPawa-wallet-server/src/main/java/com/betPawa/walllet/server/service/WalletServerService.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/betPawa-wallet-server/src/main/java/com/betPawa/walllet/server/validation/BPAmountValidator.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/betPawa-wallet-server/src/main/java/com/betPawa/walllet/server/validation/BPCurrencyValidator.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/betPawa-wallet-server/src/main/java/com/betPawa/walllet/server/validation/BPWalletValidator.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/betPawa-wallet-server/src/main/java/com/betPawa/walllet/server/validation/BetPawaAmountValidator.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/betPawa-wallet-server/src/main/java/com/betPawa/walllet/server/validation/BetPawaBaseValidator.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/betPawa-wallet-server/src/main/java/com/betPawa/walllet/server/validation/BetPawaCurrencyValidator.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/betPawa-wallet-server/src/main/java/com/betPawa/walllet/server/validation/BetPawaWalletValidator.java">
           <value>
             <set />
           </value>

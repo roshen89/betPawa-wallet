@@ -1,15 +1,35 @@
-plugins {
-    id 'java'
-}
-
-version 'unspecified'
-
-sourceCompatibility = 1.8
-
-repositories {
-    mavenCentral()
-}
+apply plugin: 'org.springframework.boot'
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '2.0.0.RELEASE'
+    compile group: 'javax.annotation', name: 'javax.annotation-api', version: '1.2'
+    compile group: 'javax.xml.bind', name: 'jaxb-api', version: '2.3.0'
+    compile group: 'javax.validation', name: 'validation-api', version: '2.0.1.Final'
+    compile group: 'org.springframework.retry', name: 'spring-retry', version: '1.2.2.RELEASE'
+
+    compile("net.devh:grpc-server-spring-boot-starter:${springBootGrpcVersion}")
+    compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.11'
+
+    compileOnly 'org.projectlombok:lombok:1.18.12'
+    annotationProcessor 'org.projectlombok:lombok:1.18.12'
+
+    testCompileOnly 'org.projectlombok:lombok:1.18.12'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.12'
+
+    testCompile group: 'org.testcontainers', name: 'mysql', version: '1.9.1'
+    compile group: 'com.h2database', name: 'h2', version: '1.4.197'
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+
+    compile project(':betPawa-wallet-proto')
+}
+
+buildscript {
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+bootJar {
+    mainClassName = 'com.betPawa.wallet.server.BetPawaWalletServerApplication'
 }

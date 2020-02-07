@@ -1,0 +1,64 @@
+buildscript {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        jcenter()
+        maven { url 'http://repo.spring.io/plugins-release' }
+        maven { url "https://plugins.gradle.org/m2/" }
+    }
+    ext {
+        projectVersion = '2.0.1.RELEASE' as Object
+
+        grpcVersion = '1.15.0' as Object
+        protobufVersion = '3.5.1' as Object
+        protobufGradlePluginVersion = '0.8.4' as Object
+
+        springBootVersion = '2.0.4.RELEASE' as Object
+        springSleuthVersion = '2.0.1.RELEASE' as Object
+        springCloudVersion = 'Finchley.SR1' as Object
+        springCloudConsulVersion = '2.0.1.RELEASE' as Object
+        springCloudEurekaVersion = '2.0.1.RELEASE' as Object
+        braveInstrumentationGrpc= '5.1.2' as Object
+        springBootGrpcVersion= '2.0.1.RELEASE' as Object
+    }
+    dependencies {
+        classpath "io.spring.gradle:dependency-management-plugin:0.6.1.RELEASE"
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
+    }
+}
+
+plugins {
+    id "org.sonarqube" version "2.6"
+}
+
+allprojects {
+    apply plugin: 'java'
+    apply plugin: 'idea'
+    apply plugin: 'eclipse'
+    apply plugin: "io.spring.dependency-management"
+
+    compileJava {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+        options.encoding = 'UTF-8'
+    }
+
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        jcenter()
+        maven { url 'http://repo.spring.io/plugins-release' }
+        maven { url "https://plugins.gradle.org/m2/" }
+        maven { url 'https://repo.spring.io/libs-milestone' }
+    }
+
+    buildscript {
+        repositories {
+            mavenLocal()
+            mavenCentral()
+            jcenter()
+            maven { url 'http://repo.spring.io/plugins-release' }
+            maven { url "https://plugins.gradle.org/m2/" }
+        }
+    }
+}

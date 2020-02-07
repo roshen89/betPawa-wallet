@@ -2,8 +2,8 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel>
-      <module name="betPawa-wallet.betPawa-wallet-server.main" target="1.8" />
-      <module name="betPawa-wallet.betPawa-wallet-server.test" target="1.8" />
+      <module name="betPawa-wallet.betPawa-wallet-client.main" target="1.8" />
+      <module name="betPawa-wallet.betPawa-wallet-client.test" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

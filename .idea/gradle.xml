@@ -9,6 +9,7 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/betPawa-wallet-client" />
             <option value="$PROJECT_DIR$/betPawa-wallet-proto" />
             <option value="$PROJECT_DIR$/betPawa-wallet-server" />
           </set>

@@ -1,3 +1,4 @@
 rootProject.name = 'betPawa-wallet'
 include 'betPawa-wallet-proto'
+include 'betPawa-wallet-server'
 

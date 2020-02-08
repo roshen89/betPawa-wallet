@@ -23,7 +23,6 @@ import net.devh.springboot.autoconfigure.grpc.server.GrpcService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
 
 @GrpcService(WalletServiceGrpc.class)
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
@@ -38,7 +37,6 @@ public class WalletServerService extends WalletServiceGrpc.WalletServiceImplBase
   private final BalanceResponseDTO balanceResponseDTO;
 
   @Override
-  @Transactional
   public void deposit(final BaseRequest request, final StreamObserver<BaseResponse> responseObserver) {
     try {
       validateRequest(request);
@@ -62,10 +60,7 @@ public class WalletServerService extends WalletServiceGrpc.WalletServiceImplBase
   }
 
   @Override
-  @Transactional
-
   public void withdraw(final BaseRequest request, final StreamObserver<BaseResponse> responseObserver) {
-
     logger.info("Request Received for UserID:{} For Amount:{}{} ", request.getUserID(), request.getAmount(),
         request.getCurrency());
     try {
@@ -87,8 +82,6 @@ public class WalletServerService extends WalletServiceGrpc.WalletServiceImplBase
   }
 
   @Override
-  @Transactional
-
   public void balance(final BaseRequest request, final StreamObserver<BaseResponse> responseObserver) {
     logger.info("Request Received for UserID:{}", request.getUserID());
     try {

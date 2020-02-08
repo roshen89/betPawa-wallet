@@ -5,7 +5,6 @@ import java.math.BigDecimal;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Table;
-import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -26,12 +25,5 @@ public class Wallet implements Serializable {
   private WalletPK walletPK;
   @NotNull
   private BigDecimal balance;
-  @Version
-  private Integer version;
 
-  public Wallet(WalletPK walletPK, @NotNull BigDecimal balance) {
-    super();
-    this.walletPK = walletPK;
-    this.balance = balance;
-  }
 }

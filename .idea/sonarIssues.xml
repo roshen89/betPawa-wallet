@@ -3,12 +3,127 @@
   <component name="issues">
     <option name="index">
       <map>
+        <entry key="/Dummy.txt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="/a.dummy">
           <value>
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/betPawa-wallet-client/build.gradle">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/betPawa-wallet-client/src/main/java/com/betPawa/wallet/client/BetPawaWalletClientApplication.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/betPawa-wallet-client/src/main/java/com/betPawa/wallet/client/config/SwaggerConfig.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/betPawa-wallet-client/src/main/java/com/betPawa/wallet/client/config/ThreadPoolConfig.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/betPawa-wallet-client/src/main/java/com/betPawa/wallet/client/config/WalletClientConfig.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/betPawa-wallet-client/src/main/java/com/betPawa/wallet/client/controller/TransactionController.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/betPawa-wallet-client/src/main/java/com/betPawa/wallet/client/controller/WalletClientController.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/betPawa-wallet-client/src/main/java/com/betPawa/wallet/client/dto/BalanceResponseDTO.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/betPawa-wallet-client/src/main/java/com/betPawa/wallet/client/dto/WalletClientParams.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/betPawa-wallet-client/src/main/java/com/betPawa/wallet/client/dto/WalletClientRequest.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/betPawa-wallet-client/src/main/java/com/betPawa/wallet/client/dto/WalletClientResponse.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/betPawa-wallet-client/src/main/java/com/betPawa/wallet/client/enums/AMOUNT.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/betPawa-wallet-client/src/main/java/com/betPawa/wallet/client/enums/ROUND.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/betPawa-wallet-client/src/main/java/com/betPawa/wallet/client/enums/TRANSACTION.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/betPawa-wallet-client/src/main/java/com/betPawa/wallet/client/service/WalletClientService.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/betPawa-wallet-client/src/main/java/com/betPawa/wallet/client/supplier/RequestSupplier.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/betPawa-wallet-client/src/main/java/com/betPawa/wallet/client/supplier/RoundSupplier.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/betPawa-wallet-client/src/main/java/com/betPawa/wallet/client/supplier/UserSupplier.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/betPawa-wallet-client/src/main/resources/application.yml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/betPawa-wallet-client/src/main/resources/banner.txt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/betPawa-wallet-client/src/main/resources/logback.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/betPawa-wallet-proto/build.gradle">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/betPawa-wallet-proto/src/generated/main/grpc/com/betPawa/wallet/proto/WalletServiceGrpc.java">
           <value>
             <set />
           </value>
@@ -128,6 +243,21 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/betPawa-wallet-server/src/main/resources/application.properties">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/betPawa-wallet-server/src/main/resources/application.yml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/betPawa-wallet-server/src/main/resources/banner.txt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/build.gradle">
           <value>
             <set />
@@ -154,6 +284,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/../bp-wallet-grpc-spring/bp-wallet-client/src/main/java/com/bp/wallet/client/enums/TRANSACTION.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../bp-wallet-grpc-spring/bp-wallet-client/src/main/java/com/bp/wallet/client/runner/UserSupplier.java">
           <value>
             <set />
           </value>

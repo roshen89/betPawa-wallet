@@ -21,8 +21,4 @@ public class BalanceResponseDTO {
     return balance;
   }
 
-  public void setBalance(Map<CURRENCY, String> balance) {
-    this.balance = balance;
-  }
-
 }

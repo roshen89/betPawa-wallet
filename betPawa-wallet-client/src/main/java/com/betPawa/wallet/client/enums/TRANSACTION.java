@@ -12,13 +12,13 @@ import io.grpc.Status;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.task.TaskExecutor;
+import org.springframework.lang.NonNull;
 
 public enum TRANSACTION {
 
   DEPOSIT {
     @Override
-    public ListenableFuture<BaseResponse> doTransact(final WalletServiceFutureStub futureStub,
-        final BaseRequest baseRequest,
+    public ListenableFuture<BaseResponse> doTransact(final WalletServiceFutureStub futureStub, final BaseRequest baseRequest,
         final TaskExecutor taskExecutor) {
 
       ListenableFuture<BaseResponse> response = futureStub.deposit(baseRequest);
@@ -31,7 +31,7 @@ public enum TRANSACTION {
         }
 
         @Override
-        public void onFailure(Throwable throwable) {
+        public void onFailure(@NonNull Throwable throwable) {
 
           logger.warn(Status.fromThrowable(throwable).getDescription());
         }
@@ -55,7 +55,7 @@ public enum TRANSACTION {
         }
 
         @Override
-        public void onFailure(Throwable throwable) {
+        public void onFailure(@NonNull Throwable throwable) {
           logger.warn(Status.fromThrowable(throwable).getDescription());
         }
       }, taskExecutor);
@@ -77,7 +77,7 @@ public enum TRANSACTION {
         }
 
         @Override
-        public void onFailure(Throwable throwable) {
+        public void onFailure(@NonNull Throwable throwable) {
           logger.warn(Status.fromThrowable(throwable).getDescription());
         }
       }, taskExecutor);

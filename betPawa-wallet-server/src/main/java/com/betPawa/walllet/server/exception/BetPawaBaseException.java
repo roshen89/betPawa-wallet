@@ -8,7 +8,7 @@ public class BetPawaBaseException extends StatusRuntimeException {
 
   private static final long serialVersionUID = 4267114442294762693L;
 
-  private StatusMessage errorStatus;
+  private final StatusMessage errorStatus;
 
   public BetPawaBaseException(Status status, StatusMessage errorStatus) {
     super(status);

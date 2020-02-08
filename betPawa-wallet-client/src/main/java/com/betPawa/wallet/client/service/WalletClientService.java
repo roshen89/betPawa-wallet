@@ -1,7 +1,6 @@
 package com.betPawa.wallet.client.service;
 
 import com.betPawa.wallet.client.dto.WalletClientRequest;
-import com.betPawa.wallet.client.dto.WalletClientResponse;
 import com.betPawa.wallet.client.supplier.UserSupplier;
 import com.betPawa.wallet.proto.BaseResponse;
 import com.betPawa.wallet.proto.OPERATION;
@@ -12,7 +11,6 @@ import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicLong;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -49,17 +47,8 @@ public class WalletClientService {
         operationStatusMap.get(OPERATION.UNRECOGNIZED).get(STATUS.TRANSACTION_FAILED).incrementAndGet();
       }
     });
+    logger.info("operationStatusMap {}", operationStatusMap);
     return operationStatusMap;
-  }
-
-  public WalletClientResponse execute(WalletClientRequest walletClientRequest)
-      throws InterruptedException {
-    long time = System.currentTimeMillis();
-    WalletClientResponse response = WalletClientResponse.builder().transactions(run(walletClientRequest)).build();
-    long timeTaken = TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis() - time);
-    logger.info("Execution done time taken: {} {}", timeTaken, TimeUnit.SECONDS.name());
-    response = response.toBuilder().timeTaken(timeTaken).build();
-    return response;
   }
 
 }

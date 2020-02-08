@@ -165,12 +165,6 @@ public class IntegrationTest {
     assertThat(response.getStatus().name()).contains(STATUS.TRANSACTION_SUCCESS.name());
   }
 
-  private void resetBalanceToZeroForTestUser() throws InterruptedException, ExecutionException {
-    BaseResponse response = getBalanceForTestUser();
-    BalanceResponseDTO balanceResponseDTO = new Gson().fromJson(response.getStatusMessage(), BalanceResponseDTO.class);
-    withdrawAllFromTestUserWallet(balanceResponseDTO);
-  }
-
   private void t9() throws InterruptedException, ExecutionException {
     BaseResponse response = getBalanceForTestUser();
     BalanceResponseDTO balanceResponseDTO = new Gson().fromJson(response.getStatusMessage(), BalanceResponseDTO.class);
@@ -222,6 +216,22 @@ public class IntegrationTest {
     }
   }
 
+
+  private BaseResponse getBalanceForTestUser() throws InterruptedException, ExecutionException {
+    ListenableFuture<BaseResponse> futureResponse;
+    BaseResponse response;
+    futureResponse = TRANSACTION.BALANCE.doTransact(futureStub, BaseRequest.newBuilder().setUserID(userID).build(), taskExecutor);
+    response = futureResponse.get();
+    return response;
+  }
+
+  private void resetBalanceToZeroForTestUser() throws InterruptedException, ExecutionException {
+    BaseResponse response = getBalanceForTestUser();
+    BalanceResponseDTO balanceResponseDTO = new Gson().fromJson(response.getStatusMessage(), BalanceResponseDTO.class);
+    withdrawAllFromTestUserWallet(balanceResponseDTO);
+  }
+
+
   private void withdrawAllFromTestUserWallet(BalanceResponseDTO dto) {
     dto.getBalance().entrySet().stream().filter(es -> new BigDecimal(es.getValue()).compareTo(BigDecimal.ZERO) > 0
 
@@ -235,14 +245,6 @@ public class IntegrationTest {
       }
 
     });
-  }
-
-  private BaseResponse getBalanceForTestUser() throws InterruptedException, ExecutionException {
-    ListenableFuture<BaseResponse> futureResponse;
-    BaseResponse response;
-    futureResponse = TRANSACTION.BALANCE.doTransact(futureStub, BaseRequest.newBuilder().setUserID(userID).build(), taskExecutor);
-    response = futureResponse.get();
-    return response;
   }
 
 }

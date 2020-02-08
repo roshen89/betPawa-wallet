@@ -7,7 +7,6 @@ import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.function.Predicate;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -21,26 +20,15 @@ public class BalanceResponseDTO {
   public Map<CURRENCY, String> getBalance() {
     if (balance == null) {
       balance = new EnumMap<>(CURRENCY.class);
-      Arrays.stream(CURRENCY.values()).filter(checkInvalidCurrency())
-          .forEach(currency -> balance.put(currency, "0"));
+      Arrays.stream(CURRENCY.values()).filter(checkInvalidCurrency()).forEach(currency -> balance.put(currency, "0"));
     }
     return balance;
   }
 
-  public void setBalance(Map<CURRENCY, String> balance) {
-    this.balance = balance;
-  }
-
-  public String getBalanceAsString(final Optional<List<Wallet>> userWallets) {
-    userWallets
-        .ifPresent(wallets -> wallets.stream().filter(checkInvalidCurrencyFromWallet()).forEach(wallet -> this
-            .getBalance().put(wallet.getWalletPK().getCurrency(), wallet.getBalance().toPlainString())));
-
+  public String getBalanceAsString(final List<Wallet> userWallets) {
+    userWallets.stream().filter(checkInvalidCurrencyFromWallet()).forEach(wallet -> this
+        .getBalance().put(wallet.getWalletPK().getCurrency(), wallet.getBalance().toPlainString()));
     return new Gson().toJson(this);
-  }
-
-  public BalanceResponseDTO getBalanceResponseDTOFromString(String response) {
-    return new Gson().fromJson(response, BalanceResponseDTO.class);
   }
 
   private Predicate<? super Wallet> checkInvalidCurrencyFromWallet() {

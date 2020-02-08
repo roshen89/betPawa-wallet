@@ -7,24 +7,22 @@ import io.grpc.Status;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.stereotype.Component;
-import org.springframework.util.CollectionUtils;
 
 @Component
 public class BetPawaWalletValidator implements BetPawaBaseValidator<Optional<List<Wallet>>> {
 
-  public void validateWallet(Optional<Wallet> t) {
-    if (!t.isPresent()) {
+  public void validateWallet(Wallet wallet) {
+    if (wallet == null) {
       throw new BetPawaValidationException(Status.INTERNAL, StatusMessage.USER_DOES_NOT_EXIST);
     }
-
   }
 
-  public void validate(Optional<List<Wallet>> t) {
-    if (!t.isPresent()) {
+  public void validate(List<Wallet> wallets) {
+    if (wallets == null) {
       throw new BetPawaValidationException(Status.INTERNAL, StatusMessage.USER_DOES_NOT_EXIST);
     }
 
-    if (CollectionUtils.isEmpty(t.get())) {
+    if (wallets.isEmpty()) {
       throw new BetPawaValidationException(Status.INTERNAL, StatusMessage.USER_DOES_NOT_EXIST);
     }
   }

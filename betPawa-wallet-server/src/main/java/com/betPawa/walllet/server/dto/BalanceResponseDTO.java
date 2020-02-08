@@ -31,6 +31,10 @@ public class BalanceResponseDTO {
     return new Gson().toJson(this);
   }
 
+  public BalanceResponseDTO getBalanceResponseDTOFromString(String response) {
+    return new Gson().fromJson(response, BalanceResponseDTO.class);
+  }
+
   private Predicate<? super Wallet> checkInvalidCurrencyFromWallet() {
     return wallet -> wallet.getWalletPK().getCurrency() != CURRENCY.UNRECOGNIZED;
   }

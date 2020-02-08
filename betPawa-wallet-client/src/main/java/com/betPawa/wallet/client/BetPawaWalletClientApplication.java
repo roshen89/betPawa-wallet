@@ -22,8 +22,8 @@ public class BetPawaWalletClientApplication {
   public CommandLineRunner execute() {
     WalletClientRequest walletClientRequest = WalletClientRequest.builder()
         .numberOfRequests(1L)
-        .numberOfRounds(1L)
-        .numberOfUsers(10L)
+        .numberOfRounds(3L)
+        .numberOfUsers(100L)
         .build();
     return args -> walletClientService.run(walletClientRequest);
   }

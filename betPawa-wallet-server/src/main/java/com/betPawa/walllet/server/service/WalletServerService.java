@@ -41,8 +41,7 @@ public class WalletServerService extends WalletServiceGrpc.WalletServiceImplBase
     try {
       validateRequest(request);
       final BigDecimal balanceToADD = get(request.getAmount());
-      logger.info("Request Received for UserID:{} For Amount:{}{} ", request.getUserID(), request.getAmount(),
-          request.getCurrency());
+      logger.info("Request Received for UserID:{} For Amount:{}{} ", request.getUserID(), request.getAmount(), request.getCurrency());
       Optional<Wallet> wallet = getUserWallet(request);
       wallet.ifPresent(bpWalletValidator::validateWallet);
       wallet.ifPresent(value -> updateWallet(value.getBalance().add(balanceToADD), value));
@@ -61,8 +60,7 @@ public class WalletServerService extends WalletServiceGrpc.WalletServiceImplBase
 
   @Override
   public void withdraw(final BaseRequest request, final StreamObserver<BaseResponse> responseObserver) {
-    logger.info("Request Received for UserID:{} For Amount:{}{} ", request.getUserID(), request.getAmount(),
-        request.getCurrency());
+    logger.info("Request Received for UserID:{} For Amount:{}{} ", request.getUserID(), request.getAmount(), request.getCurrency());
     try {
       final BigDecimal balanceToWithdraw = get(request.getAmount());
       validateRequest(request);

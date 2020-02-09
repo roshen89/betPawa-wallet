@@ -18,14 +18,14 @@ public class BetPawaWalletClientApplication {
     SpringApplication.run(BetPawaWalletClientApplication.class, args);
   }
 
-  @Bean
-  public CommandLineRunner execute() {
-    WalletClientRequest walletClientRequest = WalletClientRequest.builder()
-        .numberOfRequests(1L)
-        .numberOfRounds(3L)
-        .numberOfUsers(100L)
-        .build();
-    return args -> walletClientService.run(walletClientRequest);
-  }
+//  @Bean
+//  public CommandLineRunner execute() {
+//    WalletClientRequest walletClientRequest = WalletClientRequest.builder()
+//        .numberOfRequests(1L)
+//        .numberOfRounds(3L)
+//        .numberOfUsers(100L)
+//        .build();
+//    return args -> walletClientService.run(walletClientRequest);
+//  }
 
 }

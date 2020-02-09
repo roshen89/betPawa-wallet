@@ -23,7 +23,7 @@ public class UserSupplier implements Supplier<List<ListenableFuture<BaseResponse
   public List<ListenableFuture<BaseResponse>> get() {
     final List<ListenableFuture<BaseResponse>> round = new ArrayList<>();
     requestSupplier.setWalletClientRequest(walletClientRequest);
-    for (int userID = 1; userID <= walletClientRequest.getNumberOfUsers(); userID++) {
+    for (int userID = 1; userID <= walletClientRequest.getCountOfUsers(); userID++) {
       requestSupplier.setUserID((long) userID);
       round.addAll(requestSupplier.get());
     }

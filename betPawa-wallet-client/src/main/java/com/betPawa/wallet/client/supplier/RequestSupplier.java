@@ -21,15 +21,15 @@ public class RequestSupplier implements Supplier<List<ListenableFuture<BaseRespo
   @Autowired
   private RoundSupplier roundSupplier;
 
-  private WalletClientRequest walletClientRequest;
   private Long userID;
+  private WalletClientRequest walletClientRequest;
 
   @Override
   public List<ListenableFuture<BaseResponse>> get() {
     final List<ListenableFuture<BaseResponse>> round = new ArrayList<>();
-    roundSupplier.setNumberOfRounds(walletClientRequest.getNumberOfRounds());
+    roundSupplier.setNumberOfRounds(walletClientRequest.getCountOfRounds());
     roundSupplier.setUserID(userID);
-    for (int i = 0; i < walletClientRequest.getNumberOfRequests(); i++) {
+    for (int i = 0; i < walletClientRequest.getCountOfRequests(); i++) {
       round.addAll(roundSupplier.get());
     }
     return round;

@@ -7,7 +7,7 @@ import com.betPawa.wallet.proto.STATUS;
 import com.betPawa.wallet.proto.WalletServiceGrpc;
 import com.betPawa.walllet.server.dto.BalanceResponseDTO;
 import com.betPawa.walllet.server.entity.Wallet;
-import com.betPawa.walllet.server.exception.BetPawaValidationException;
+import com.betPawa.walllet.server.exception.BetPawaException;
 import com.betPawa.walllet.server.repository.WalletRepository;
 import com.betPawa.walllet.server.validation.BetPawaAmountValidator;
 import com.betPawa.walllet.server.validation.BetPawaCurrencyValidator;
@@ -45,7 +45,7 @@ public class WalletServerService extends WalletServiceGrpc.WalletServiceImplBase
       wallet.ifPresent(value -> updateWallet(value.getBalance().add(balanceToADD), value));
       successResponse(responseObserver, OPERATION.DEPOSIT);
       log.info("Wallet Updated SuccessFully");
-    } catch (BetPawaValidationException e) {
+    } catch (BetPawaException e) {
       log.error(e.getErrorStatus().name());
       responseObserver.onError(new StatusRuntimeException(e.getStatus().withDescription(e.getErrorStatus().name())));
     } catch (Exception e) {
@@ -66,7 +66,7 @@ public class WalletServerService extends WalletServiceGrpc.WalletServiceImplBase
       wallet.ifPresent(value -> validateWithDrawRequest(balanceToWithdraw, value));
       wallet.ifPresent(value -> updateWallet(value.getBalance().subtract(balanceToWithdraw), value));
       successResponse(responseObserver, OPERATION.WITHDRAW);
-    } catch (BetPawaValidationException e) {
+    } catch (BetPawaException e) {
       log.error(e.getErrorStatus().name());
       responseObserver.onError(new StatusRuntimeException(e.getStatus().withDescription(e.getErrorStatus().name())));
     } catch (Exception e) {
@@ -91,7 +91,7 @@ public class WalletServerService extends WalletServiceGrpc.WalletServiceImplBase
       responseObserver.onNext(BaseResponse.newBuilder().setStatusMessage(balance)
           .setStatus((STATUS.TRANSACTION_SUCCESS)).setOperation(OPERATION.BALANCE).build());
       responseObserver.onCompleted();
-    } catch (BetPawaValidationException e) {
+    } catch (BetPawaException e) {
       log.error(e.getErrorStatus().name());
       responseObserver.onError(new StatusRuntimeException(e.getStatus().withDescription(e.getErrorStatus().name())));
     } catch (Exception e) {

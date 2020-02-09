@@ -27,9 +27,8 @@ public class RoundSupplier implements Supplier<List<ListenableFuture<BaseRespons
   @Autowired
   private TaskExecutor taskExecutor;
 
-  private Long numberOfRounds;
-  private String stats;
   private Long userID;
+  private Long numberOfRounds;
 
   @Override
   public List<ListenableFuture<BaseResponse>> get() {

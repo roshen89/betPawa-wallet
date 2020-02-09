@@ -11,8 +11,8 @@ public class ThreadPoolConfig {
   @Bean
   public TaskExecutor threadPoolTaskExecutor() {
     ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
-    executor.setCorePoolSize(10);
-    executor.setMaxPoolSize(10);
+    executor.setCorePoolSize(11);
+    executor.setMaxPoolSize(11);
     executor.setQueueCapacity(500);
     executor.setThreadNamePrefix("betPawa-wallet-client");
     executor.initialize();

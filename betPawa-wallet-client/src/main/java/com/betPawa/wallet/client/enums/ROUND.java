@@ -49,7 +49,6 @@ public enum ROUND {
 
       return list;
     }
-
   },
 
   B {
@@ -96,8 +95,8 @@ public enum ROUND {
 
       return list;
     }
-
   },
+
   C {
     @Override
     public List<ListenableFuture<BaseResponse>> goExecute(final WalletServiceFutureStub futureStub,

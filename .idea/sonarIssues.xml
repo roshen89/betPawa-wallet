@@ -13,6 +13,21 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../JAVA-APPS/restaroundapp/src/main/java/com/restaround/error/exception/CommonException.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../JAVA-APPS/restaroundapp/src/main/java/com/restaround/security/JwtAuthenticationEntryPoint.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../JAVA-APPS/restaroundapp/src/main/java/com/restaround/security/JwtTokenProvider.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/.gitignore">
           <value>
             <set />
@@ -199,6 +214,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/betPawa-wallet-server/src/main/java/com/betPawa/walllet/server/exception/BetPawaDataException.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/betPawa-wallet-server/src/main/java/com/betPawa/walllet/server/exception/BetPawaException.java">
           <value>
             <set />
           </value>

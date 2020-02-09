@@ -9,7 +9,7 @@ import lombok.Data;
 @Builder(toBuilder = true)
 public final class WalletClientRequest {
 
-  private Long numberOfUsers;
-  private Long numberOfRequests;
-  private Long numberOfRounds;
+  private Long countOfUsers;
+  private Long countOfRequests;
+  private Long countOfRounds;
 }

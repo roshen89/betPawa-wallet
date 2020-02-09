@@ -17,12 +17,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class WalletClientController {
 
   @Autowired
-  private WalletClientService service;
+  private WalletClientService clientService;
 
   @PostMapping
   public WalletClientResponse execute(@RequestBody WalletClientRequest clientRequest) {
     long time = System.currentTimeMillis();
-    WalletClientResponse clientResponse = WalletClientResponse.builder().transactions(service.run(clientRequest)).build();
+    WalletClientResponse clientResponse = WalletClientResponse.builder().transactions(clientService.run(clientRequest)).build();
     long timeTaken = TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis() - time);
     log.info("Execution done time taken: {} {}", timeTaken, TimeUnit.SECONDS.name());
     return clientResponse.toBuilder().timeTaken(timeTaken).build();

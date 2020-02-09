@@ -9,7 +9,7 @@ import lombok.Getter;
 public enum AMOUNT {
 
   ZERO(BigDecimal.valueOf(0)),
-  HUNDRED(BigDecimal.valueOf(100.00)),
+  HUNDRED(BigDecimal.valueOf(100)),
   TWO_HUNDRED(BigDecimal.valueOf(200)),
   THREE_HUNDRED(BigDecimal.valueOf(300));
 

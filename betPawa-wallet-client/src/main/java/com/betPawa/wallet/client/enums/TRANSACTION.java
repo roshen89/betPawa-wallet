@@ -20,10 +20,9 @@ public enum TRANSACTION {
     @Override
     public ListenableFuture<BaseResponse> doTransact(final WalletServiceFutureStub futureStub, final BaseRequest baseRequest,
         final TaskExecutor taskExecutor) {
-
       ListenableFuture<BaseResponse> response = futureStub.deposit(baseRequest);
-
       addCallback(response, new FutureCallback<BaseResponse>() {
+
         @Override
         public void onSuccess(BaseResponse result) {
           result.toBuilder().setOperation(OPERATION.DEPOSIT);
@@ -32,7 +31,6 @@ public enum TRANSACTION {
 
         @Override
         public void onFailure(@NonNull Throwable throwable) {
-
           log.warn(Status.fromThrowable(throwable).getDescription());
         }
       }, taskExecutor);
@@ -50,7 +48,6 @@ public enum TRANSACTION {
         @Override
         public void onSuccess(BaseResponse result) {
           result.toBuilder().setOperation(OPERATION.WITHDRAW);
-
           log.info("{} {}", result.getStatus().name(), result.getStatusMessage());
         }
 

@@ -19,16 +19,14 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import net.devh.springboot.autoconfigure.grpc.server.GrpcService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @GrpcService(WalletServiceGrpc.class)
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
+@Slf4j
 public class WalletServerService extends WalletServiceGrpc.WalletServiceImplBase {
-
-  private static final Logger logger = LoggerFactory.getLogger(WalletServerService.class);
 
   private final WalletRepository walletRepository;
   private final BetPawaAmountValidator bpAmountValidator;
@@ -41,17 +39,17 @@ public class WalletServerService extends WalletServiceGrpc.WalletServiceImplBase
     try {
       validateRequest(request);
       final BigDecimal balanceToADD = get(request.getAmount());
-      logger.info("Request Received for UserID:{} For Amount:{}{} ", request.getUserID(), request.getAmount(), request.getCurrency());
+      log.info("Request Received for UserID:{} For Amount:{}{} ", request.getUserID(), request.getAmount(), request.getCurrency());
       Optional<Wallet> wallet = getUserWallet(request);
       wallet.ifPresent(bpWalletValidator::validateWallet);
       wallet.ifPresent(value -> updateWallet(value.getBalance().add(balanceToADD), value));
       successResponse(responseObserver, OPERATION.DEPOSIT);
-      logger.info("Wallet Updated SuccessFully");
+      log.info("Wallet Updated SuccessFully");
     } catch (BetPawaValidationException e) {
-      logger.error(e.getErrorStatus().name());
+      log.error(e.getErrorStatus().name());
       responseObserver.onError(new StatusRuntimeException(e.getStatus().withDescription(e.getErrorStatus().name())));
     } catch (Exception e) {
-      logger.error("------------>", e);
+      log.error("------------>", e);
       responseObserver.onError(new StatusRuntimeException(Status.UNKNOWN.withDescription(e.getMessage())));
     } finally {
       walletRepository.flush();
@@ -60,7 +58,7 @@ public class WalletServerService extends WalletServiceGrpc.WalletServiceImplBase
 
   @Override
   public void withdraw(final BaseRequest request, final StreamObserver<BaseResponse> responseObserver) {
-    logger.info("Request Received for UserID:{} For Amount:{}{} ", request.getUserID(), request.getAmount(), request.getCurrency());
+    log.info("Request Received for UserID:{} For Amount:{}{} ", request.getUserID(), request.getAmount(), request.getCurrency());
     try {
       final BigDecimal balanceToWithdraw = get(request.getAmount());
       validateRequest(request);
@@ -69,10 +67,10 @@ public class WalletServerService extends WalletServiceGrpc.WalletServiceImplBase
       wallet.ifPresent(value -> updateWallet(value.getBalance().subtract(balanceToWithdraw), value));
       successResponse(responseObserver, OPERATION.WITHDRAW);
     } catch (BetPawaValidationException e) {
-      logger.error(e.getErrorStatus().name());
+      log.error(e.getErrorStatus().name());
       responseObserver.onError(new StatusRuntimeException(e.getStatus().withDescription(e.getErrorStatus().name())));
     } catch (Exception e) {
-      logger.error("------------>", e);
+      log.error("------------>", e);
       responseObserver.onError(new StatusRuntimeException(Status.UNKNOWN.withDescription(e.getMessage())));
     } finally {
       walletRepository.flush();
@@ -81,7 +79,7 @@ public class WalletServerService extends WalletServiceGrpc.WalletServiceImplBase
 
   @Override
   public void balance(final BaseRequest request, final StreamObserver<BaseResponse> responseObserver) {
-    logger.info("Request Received for UserID:{}", request.getUserID());
+    log.info("Request Received for UserID:{}", request.getUserID());
     try {
       Optional<List<Wallet>> userWallets = walletRepository.findByWalletPK_UserID(request.getUserID());
       userWallets.ifPresent(bpWalletValidator::validate);
@@ -89,15 +87,15 @@ public class WalletServerService extends WalletServiceGrpc.WalletServiceImplBase
       if (userWallets.isPresent()) {
         balance = balanceResponseDTO.getBalanceAsString(userWallets.get());
       }
-      logger.info(balance);
+      log.info(balance);
       responseObserver.onNext(BaseResponse.newBuilder().setStatusMessage(balance)
           .setStatus((STATUS.TRANSACTION_SUCCESS)).setOperation(OPERATION.BALANCE).build());
       responseObserver.onCompleted();
     } catch (BetPawaValidationException e) {
-      logger.error(e.getErrorStatus().name());
+      log.error(e.getErrorStatus().name());
       responseObserver.onError(new StatusRuntimeException(e.getStatus().withDescription(e.getErrorStatus().name())));
     } catch (Exception e) {
-      logger.error(e.getMessage(), e);
+      log.error(e.getMessage(), e);
       responseObserver.onError(new StatusRuntimeException(Status.UNKNOWN.withDescription(e.getMessage())));
     }
 

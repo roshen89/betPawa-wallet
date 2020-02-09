@@ -13,6 +13,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/.gitignore">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/betPawa-wallet-client/build.gradle">
           <value>
             <set />
@@ -114,6 +119,16 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/betPawa-wallet-client/src/main/resources/logback.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/betPawa-wallet-client/src/test/java/com/betPawa/wallet/client/integration/IntegrationTest.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/betPawa-wallet-client/src/test/java/integration/IntegrationTest.java">
           <value>
             <set />
           </value>
@@ -254,6 +269,21 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/betPawa-wallet-server/src/main/resources/banner.txt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/betPawa-wallet-server/src/test/java/server/config/TestConfiguration.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/betPawa-wallet-server/src/test/java/server/dto/BalanceResponseDTOTest.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/betPawa-wallet-server/src/test/java/server/repository/WalletRepositoryTest.java">
           <value>
             <set />
           </value>

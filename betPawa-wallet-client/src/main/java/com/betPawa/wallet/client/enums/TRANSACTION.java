@@ -9,11 +9,11 @@ import com.betPawa.wallet.proto.WalletServiceGrpc.WalletServiceFutureStub;
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.ListenableFuture;
 import io.grpc.Status;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.task.TaskExecutor;
 import org.springframework.lang.NonNull;
 
+@Slf4j
 public enum TRANSACTION {
 
   DEPOSIT {
@@ -27,13 +27,13 @@ public enum TRANSACTION {
         @Override
         public void onSuccess(BaseResponse result) {
           result.toBuilder().setOperation(OPERATION.DEPOSIT);
-          logger.info("{} {}", result.getStatus().name(), result.getStatusMessage());
+          log.info("{} {}", result.getStatus().name(), result.getStatusMessage());
         }
 
         @Override
         public void onFailure(@NonNull Throwable throwable) {
 
-          logger.warn(Status.fromThrowable(throwable).getDescription());
+          log.warn(Status.fromThrowable(throwable).getDescription());
         }
       }, taskExecutor);
 
@@ -51,12 +51,12 @@ public enum TRANSACTION {
         public void onSuccess(BaseResponse result) {
           result.toBuilder().setOperation(OPERATION.WITHDRAW);
 
-          logger.info("{} {}", result.getStatus().name(), result.getStatusMessage());
+          log.info("{} {}", result.getStatus().name(), result.getStatusMessage());
         }
 
         @Override
         public void onFailure(@NonNull Throwable throwable) {
-          logger.warn(Status.fromThrowable(throwable).getDescription());
+          log.warn(Status.fromThrowable(throwable).getDescription());
         }
       }, taskExecutor);
       return response;
@@ -73,19 +73,17 @@ public enum TRANSACTION {
         @Override
         public void onSuccess(BaseResponse result) {
           result.toBuilder().setOperation(OPERATION.BALANCE);
-          logger.info("{} {}", result.getStatus().name(), result.getStatusMessage());
+          log.info("{} {}", result.getStatus().name(), result.getStatusMessage());
         }
 
         @Override
         public void onFailure(@NonNull Throwable throwable) {
-          logger.warn(Status.fromThrowable(throwable).getDescription());
+          log.warn(Status.fromThrowable(throwable).getDescription());
         }
       }, taskExecutor);
       return response;
     }
   };
-
-  private static final Logger logger = LoggerFactory.getLogger(TRANSACTION.class);
 
   public abstract ListenableFuture<BaseResponse> doTransact(final WalletServiceFutureStub futureStub,
       final BaseRequest baseRequest, final TaskExecutor taskExecutor);

@@ -5,13 +5,11 @@ import com.betPawa.walllet.server.entity.Wallet;
 import com.betPawa.walllet.server.entity.WalletPK;
 import com.betPawa.walllet.server.repository.WalletRepository;
 import java.math.BigDecimal;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.retry.annotation.EnableRetry;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -19,10 +17,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @SpringBootApplication
 @EnableTransactionManagement
 @EnableRetry
-@EnableCaching
+@Slf4j
 public class BetPawaWalletServerApplication {
-
-  private static final Logger log = LoggerFactory.getLogger(BetPawaWalletServerApplication.class);
 
   @Autowired
   WalletRepository repository;

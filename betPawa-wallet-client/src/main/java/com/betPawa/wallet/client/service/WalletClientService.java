@@ -12,15 +12,13 @@ import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
+@Slf4j
 public class WalletClientService {
-
-  private static final Logger logger = LoggerFactory.getLogger(WalletClientService.class);
 
   @Autowired
   private UserSupplier userSupplier;
@@ -40,14 +38,14 @@ public class WalletClientService {
     roundsLFResponse.forEach(listenableFuture -> {
       try {
         BaseResponse response = listenableFuture.get();
-        logger.info(roundsLFResponse.size() + ":  " + listenableFuture.get().getStatus().name(), listenableFuture.get().getStatusMessage());
+        log.info(roundsLFResponse.size() + ":  " + listenableFuture.get().getStatus().name(), listenableFuture.get().getStatusMessage());
         operationStatusMap.get(response.getOperation()).get(STATUS.TRANSACTION_SUCCESS).incrementAndGet();
       } catch (Exception e) {
-        logger.error(e.getMessage());
+        log.error(e.getMessage());
         operationStatusMap.get(OPERATION.UNRECOGNIZED).get(STATUS.TRANSACTION_FAILED).incrementAndGet();
       }
     });
-    logger.info("operationStatusMap {}", operationStatusMap);
+    log.info("operationStatusMap {}", operationStatusMap);
     return operationStatusMap;
   }
 

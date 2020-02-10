@@ -8,7 +8,6 @@ import com.betPawa.wallet.client.dto.WalletClientResponse;
 import com.betPawa.wallet.client.service.WalletClientService;
 import com.betPawa.wallet.proto.OPERATION;
 import com.betPawa.wallet.proto.STATUS;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.EnumMap;
 import java.util.Map;
@@ -55,7 +54,7 @@ public class WalletClientControllerTest {
   @Test
   public void execute() throws Exception {
     Mockito.when(clientService.run(clientRequest)).thenReturn(operationMapMap);
-    MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.post("/" )
+    MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.post("/")
         .contentType(MediaType.APPLICATION_JSON)
         .content(mapper.writeValueAsString(clientRequest)))
         .andExpect(status().isOk())

@@ -63,7 +63,17 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../JAVA-APPS/restaroundapp/src/main/resources/application.properties">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/.gitignore">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/README.md">
           <value>
             <set />
           </value>
@@ -389,6 +399,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/betPawa-wallet-server/src/main/resources/banner.txt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/betPawa-wallet-server/src/main/resources/schema.sql">
           <value>
             <set />
           </value>

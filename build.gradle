@@ -7,19 +7,19 @@ buildscript {
         maven { url "https://plugins.gradle.org/m2/" }
     }
     ext {
-        projectVersion = '2.0.1.RELEASE' as Object
+        projectVersion = '2.0.1.RELEASE' 
 
-        grpcVersion = '1.15.0' as Object
-        protobufVersion = '3.5.1' as Object
-        protobufGradlePluginVersion = '0.8.4' as Object
+        grpcVersion = '1.15.0' 
+        protobufVersion = '3.5.1' 
+        protobufGradlePluginVersion = '0.8.4' 
 
-        springBootVersion = '2.0.4.RELEASE' as Object
-        springSleuthVersion = '2.0.1.RELEASE' as Object
-        springCloudVersion = 'Finchley.SR1' as Object
-        springCloudConsulVersion = '2.0.1.RELEASE' as Object
-        springCloudEurekaVersion = '2.0.1.RELEASE' as Object
-        braveInstrumentationGrpc= '5.1.2' as Object
-        springBootGrpcVersion= '2.0.1.RELEASE' as Object
+        springBootVersion = '2.0.4.RELEASE' 
+        springSleuthVersion = '2.0.1.RELEASE' 
+        springCloudVersion = 'Finchley.SR1' 
+        springCloudConsulVersion = '2.0.1.RELEASE' 
+        springCloudEurekaVersion = '2.0.1.RELEASE' 
+        braveInstrumentationGrpc= '5.1.2' 
+        springBootGrpcVersion= '2.0.1.RELEASE' 
     }
     dependencies {
         classpath "io.spring.gradle:dependency-management-plugin:0.6.1.RELEASE"

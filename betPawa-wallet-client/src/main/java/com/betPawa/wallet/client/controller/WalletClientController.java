@@ -2,7 +2,7 @@ package com.betPawa.wallet.client.controller;
 
 import com.betPawa.wallet.client.dto.WalletClientRequest;
 import com.betPawa.wallet.client.dto.WalletClientResponse;
-import com.betPawa.wallet.client.service.WalletClientService;
+import com.betPawa.wallet.client.service.impl.WalletClientServiceImpl;
 import java.util.concurrent.TimeUnit;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class WalletClientController {
 
   @Autowired
-  private WalletClientService clientService;
+  private WalletClientServiceImpl clientService;
 
   @PostMapping
   public WalletClientResponse execute(@RequestBody WalletClientRequest clientRequest) {

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -16,10 +17,10 @@ import org.springframework.stereotype.Component;
 @Scope("prototype")
 @Getter
 @Setter
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class RequestSupplier implements Supplier<List<ListenableFuture<BaseResponse>>> {
 
-  @Autowired
-  private RoundSupplier roundSupplier;
+  private final RoundSupplier roundSupplier;
 
   private Long userID;
   private WalletClientRequest walletClientRequest;

@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.function.Supplier;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -19,13 +20,11 @@ import org.springframework.stereotype.Component;
 @Scope("prototype")
 @Getter
 @Setter
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class RoundSupplier implements Supplier<List<ListenableFuture<BaseResponse>>> {
 
-  @Autowired
-  private WalletServiceFutureStub walletServiceFutureStub;
-
-  @Autowired
-  private TaskExecutor taskExecutor;
+  private final WalletServiceFutureStub walletServiceFutureStub;
+  private final TaskExecutor taskExecutor;
 
   private Long userID;
   private Long numberOfRounds;

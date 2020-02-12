@@ -5,7 +5,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import com.betPawa.wallet.client.dto.WalletClientRequest;
 import com.betPawa.wallet.client.dto.WalletClientResponse;
-import com.betPawa.wallet.client.service.WalletClientService;
+import com.betPawa.wallet.client.service.impl.WalletClientServiceImpl;
 import com.betPawa.wallet.proto.OPERATION;
 import com.betPawa.wallet.proto.STATUS;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -32,7 +32,7 @@ public class WalletClientControllerTest {
   WalletClientController clientController;
 
   @Mock
-  WalletClientService clientService;
+  WalletClientServiceImpl clientService;
 
   private Map<OPERATION, Map<STATUS, AtomicLong>> operationMapMap;
 

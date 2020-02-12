@@ -1,18 +1,15 @@
 package com.betPawa.wallet.client;
 
-import com.betPawa.wallet.client.dto.WalletClientRequest;
-import com.betPawa.wallet.client.service.WalletClientService;
+import com.betPawa.wallet.client.service.impl.WalletClientServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 public class BetPawaWalletClientApplication {
 
   @Autowired
-  WalletClientService walletClientService;
+  WalletClientServiceImpl walletClientServiceImpl;
 
   public static void main(String[] args) {
     SpringApplication.run(BetPawaWalletClientApplication.class, args);

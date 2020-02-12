@@ -1,6 +1,7 @@
-package com.betPawa.wallet.client.service;
+package com.betPawa.wallet.client.service.impl;
 
 import com.betPawa.wallet.client.dto.WalletClientRequest;
+import com.betPawa.wallet.client.service.ClientService;
 import com.betPawa.wallet.client.supplier.UserSupplier;
 import com.betPawa.wallet.proto.BaseResponse;
 import com.betPawa.wallet.proto.OPERATION;
@@ -12,16 +13,17 @@ import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 @Slf4j
-public class WalletClientService {
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
+public class WalletClientServiceImpl implements ClientService {
 
-  @Autowired
-  private UserSupplier userSupplier;
+  private final UserSupplier userSupplier;
 
   public Map<OPERATION, Map<STATUS, AtomicLong>> run(final WalletClientRequest walletClientRequest) {
 

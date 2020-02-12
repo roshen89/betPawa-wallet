@@ -6,16 +6,17 @@ import com.google.common.util.concurrent.ListenableFuture;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 @Component
 @Scope("prototype")
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class UserSupplier implements Supplier<List<ListenableFuture<BaseResponse>>> {
 
-  @Autowired
-  private RequestSupplier requestSupplier;
+  private final RequestSupplier requestSupplier;
 
   private WalletClientRequest walletClientRequest;
 

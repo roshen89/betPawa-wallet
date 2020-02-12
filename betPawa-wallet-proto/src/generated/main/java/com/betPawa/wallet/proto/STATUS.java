@@ -4,9 +4,9 @@
 package com.betPawa.wallet.proto;
 
 /**
- * Protobuf enum {@code STATUS}
+ * Protobuf enum {@code Status}
  */
-public enum STATUS
+public enum Status
     implements com.google.protobuf.ProtocolMessageEnum {
   /**
    * <code>TRANSACTION_SUCCESS = 0;</code>
@@ -41,11 +41,11 @@ public enum STATUS
    * @deprecated Use {@link #forNumber(int)} instead.
    */
   @java.lang.Deprecated
-  public static STATUS valueOf(int value) {
+  public static Status valueOf(int value) {
     return forNumber(value);
   }
 
-  public static STATUS forNumber(int value) {
+  public static Status forNumber(int value) {
     switch (value) {
       case 0: return TRANSACTION_SUCCESS;
       case 1: return TRANSACTION_FAILED;
@@ -53,15 +53,15 @@ public enum STATUS
     }
   }
 
-  public static com.google.protobuf.Internal.EnumLiteMap<STATUS>
+  public static com.google.protobuf.Internal.EnumLiteMap<Status>
       internalGetValueMap() {
     return internalValueMap;
   }
   private static final com.google.protobuf.Internal.EnumLiteMap<
-      STATUS> internalValueMap =
-        new com.google.protobuf.Internal.EnumLiteMap<STATUS>() {
-          public STATUS findValueByNumber(int number) {
-            return STATUS.forNumber(number);
+      Status> internalValueMap =
+        new com.google.protobuf.Internal.EnumLiteMap<Status>() {
+          public Status findValueByNumber(int number) {
+            return Status.forNumber(number);
           }
         };
 
@@ -78,9 +78,9 @@ public enum STATUS
     return com.betPawa.wallet.proto.WalletClass.getDescriptor().getEnumTypes().get(0);
   }
 
-  private static final STATUS[] VALUES = values();
+  private static final Status[] VALUES = values();
 
-  public static STATUS valueOf(
+  public static Status valueOf(
       com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
     if (desc.getType() != getDescriptor()) {
       throw new java.lang.IllegalArgumentException(
@@ -94,10 +94,10 @@ public enum STATUS
 
   private final int value;
 
-  private STATUS(int value) {
+  private Status(int value) {
     this.value = value;
   }
 
-  // @@protoc_insertion_point(enum_scope:STATUS)
+  // @@protoc_insertion_point(enum_scope:Status)
 }
 

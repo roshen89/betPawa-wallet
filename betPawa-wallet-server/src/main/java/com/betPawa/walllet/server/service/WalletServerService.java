@@ -2,8 +2,8 @@ package com.betPawa.walllet.server.service;
 
 import com.betPawa.wallet.proto.BaseRequest;
 import com.betPawa.wallet.proto.BaseResponse;
-import com.betPawa.wallet.proto.OPERATION;
-import com.betPawa.wallet.proto.STATUS;
+import com.betPawa.wallet.proto.Operation;
+import com.betPawa.wallet.proto.Status;
 import com.betPawa.wallet.proto.WalletServiceGrpc;
 import com.betPawa.walllet.server.dto.BalanceResponseDTO;
 import com.betPawa.walllet.server.entity.Wallet;
@@ -12,7 +12,6 @@ import com.betPawa.walllet.server.repository.WalletRepository;
 import com.betPawa.walllet.server.validation.BetPawaAmountValidator;
 import com.betPawa.walllet.server.validation.BetPawaCurrencyValidator;
 import com.betPawa.walllet.server.validation.BetPawaWalletValidator;
-import io.grpc.Status;
 import io.grpc.StatusRuntimeException;
 import io.grpc.stub.StreamObserver;
 import java.math.BigDecimal;
@@ -43,14 +42,14 @@ public class WalletServerService extends WalletServiceGrpc.WalletServiceImplBase
       Optional<Wallet> wallet = getUserWallet(request);
       wallet.ifPresent(bpWalletValidator::validateWallet);
       wallet.ifPresent(value -> updateWallet(value.getBalance().add(balanceToADD), value));
-      successResponse(responseObserver, OPERATION.DEPOSIT);
+      successResponse(responseObserver, Operation.DEPOSIT);
       log.info("Wallet Updated SuccessFully");
     } catch (BetPawaException e) {
       log.error(e.getErrorStatus().name());
       responseObserver.onError(new StatusRuntimeException(e.getStatus().withDescription(e.getErrorStatus().name())));
     } catch (Exception e) {
       log.error("------------>", e);
-      responseObserver.onError(new StatusRuntimeException(Status.UNKNOWN.withDescription(e.getMessage())));
+      responseObserver.onError(new StatusRuntimeException(io.grpc.Status.UNKNOWN.withDescription(e.getMessage())));
     } finally {
       walletRepository.flush();
     }
@@ -65,13 +64,13 @@ public class WalletServerService extends WalletServiceGrpc.WalletServiceImplBase
       Optional<Wallet> wallet = getUserWallet(request);
       wallet.ifPresent(value -> validateWithDrawRequest(balanceToWithdraw, value));
       wallet.ifPresent(value -> updateWallet(value.getBalance().subtract(balanceToWithdraw), value));
-      successResponse(responseObserver, OPERATION.WITHDRAW);
+      successResponse(responseObserver, Operation.WITHDRAW);
     } catch (BetPawaException e) {
       log.error(e.getErrorStatus().name());
       responseObserver.onError(new StatusRuntimeException(e.getStatus().withDescription(e.getErrorStatus().name())));
     } catch (Exception e) {
       log.error("------------>", e);
-      responseObserver.onError(new StatusRuntimeException(Status.UNKNOWN.withDescription(e.getMessage())));
+      responseObserver.onError(new StatusRuntimeException(io.grpc.Status.UNKNOWN.withDescription(e.getMessage())));
     } finally {
       walletRepository.flush();
     }
@@ -89,14 +88,14 @@ public class WalletServerService extends WalletServiceGrpc.WalletServiceImplBase
       }
       log.info(balance);
       responseObserver.onNext(BaseResponse.newBuilder().setStatusMessage(balance)
-          .setStatus((STATUS.TRANSACTION_SUCCESS)).setOperation(OPERATION.BALANCE).build());
+          .setStatus((Status.TRANSACTION_SUCCESS)).setOperation(Operation.BALANCE).build());
       responseObserver.onCompleted();
     } catch (BetPawaException e) {
       log.error(e.getErrorStatus().name());
       responseObserver.onError(new StatusRuntimeException(e.getStatus().withDescription(e.getErrorStatus().name())));
     } catch (Exception e) {
       log.error(e.getMessage(), e);
-      responseObserver.onError(new StatusRuntimeException(Status.UNKNOWN.withDescription(e.getMessage())));
+      responseObserver.onError(new StatusRuntimeException(io.grpc.Status.UNKNOWN.withDescription(e.getMessage())));
     }
 
   }
@@ -110,9 +109,9 @@ public class WalletServerService extends WalletServiceGrpc.WalletServiceImplBase
     bpCurrencyValidator.checkCurrency(request.getCurrency());
   }
 
-  private void successResponse(final StreamObserver<BaseResponse> responseObserver, OPERATION operation) {
+  private void successResponse(final StreamObserver<BaseResponse> responseObserver, Operation operation) {
     responseObserver.onNext(
-        BaseResponse.newBuilder().setStatus(STATUS.TRANSACTION_SUCCESS).setOperation(operation).build());
+        BaseResponse.newBuilder().setStatus(Status.TRANSACTION_SUCCESS).setOperation(operation).build());
     responseObserver.onCompleted();
   }
 

@@ -1,6 +1,6 @@
 package com.betPawa.walllet.server.dto;
 
-import com.betPawa.wallet.proto.CURRENCY;
+import com.betPawa.wallet.proto.Currency;
 import com.betPawa.walllet.server.entity.Wallet;
 import com.google.gson.Gson;
 import java.util.Arrays;
@@ -15,12 +15,12 @@ import org.springframework.stereotype.Component;
 @Scope("prototype")
 public class BalanceResponseDTO {
 
-  private Map<CURRENCY, String> balance;
+  private Map<Currency, String> balance;
 
-  public Map<CURRENCY, String> getBalance() {
+  public Map<Currency, String> getBalance() {
     if (balance == null) {
-      balance = new EnumMap<>(CURRENCY.class);
-      Arrays.stream(CURRENCY.values()).filter(checkInvalidCurrency()).forEach(currency -> balance.put(currency, "0"));
+      balance = new EnumMap<>(Currency.class);
+      Arrays.stream(Currency.values()).filter(checkInvalidCurrency()).forEach(currency -> balance.put(currency, "0"));
     }
     return balance;
   }
@@ -36,11 +36,11 @@ public class BalanceResponseDTO {
   }
 
   private Predicate<? super Wallet> checkInvalidCurrencyFromWallet() {
-    return wallet -> wallet.getWalletPK().getCurrency() != CURRENCY.UNRECOGNIZED;
+    return wallet -> wallet.getWalletPK().getCurrency() != Currency.UNRECOGNIZED;
   }
 
-  private Predicate<? super CURRENCY> checkInvalidCurrency() {
-    return currency -> currency != CURRENCY.UNRECOGNIZED;
+  private Predicate<? super Currency> checkInvalidCurrency() {
+    return currency -> currency != Currency.UNRECOGNIZED;
   }
 
 }

@@ -97,17 +97,17 @@ private static final long serialVersionUID = 0L;
   public static final int STATUS_FIELD_NUMBER = 1;
   private int status_;
   /**
-   * <code>.STATUS status = 1;</code>
+   * <code>.Status status = 1;</code>
    */
   public int getStatusValue() {
     return status_;
   }
   /**
-   * <code>.STATUS status = 1;</code>
+   * <code>.Status status = 1;</code>
    */
-  public com.betPawa.wallet.proto.STATUS getStatus() {
-    com.betPawa.wallet.proto.STATUS result = com.betPawa.wallet.proto.STATUS.valueOf(status_);
-    return result == null ? com.betPawa.wallet.proto.STATUS.UNRECOGNIZED : result;
+  public com.betPawa.wallet.proto.Status getStatus() {
+    com.betPawa.wallet.proto.Status result = com.betPawa.wallet.proto.Status.valueOf(status_);
+    return result == null ? com.betPawa.wallet.proto.Status.UNRECOGNIZED : result;
   }
 
   public static final int STATUSMESSAGE_FIELD_NUMBER = 2;
@@ -147,17 +147,17 @@ private static final long serialVersionUID = 0L;
   public static final int OPERATION_FIELD_NUMBER = 3;
   private int operation_;
   /**
-   * <code>.OPERATION operation = 3;</code>
+   * <code>.Operation operation = 3;</code>
    */
   public int getOperationValue() {
     return operation_;
   }
   /**
-   * <code>.OPERATION operation = 3;</code>
+   * <code>.Operation operation = 3;</code>
    */
-  public com.betPawa.wallet.proto.OPERATION getOperation() {
-    com.betPawa.wallet.proto.OPERATION result = com.betPawa.wallet.proto.OPERATION.valueOf(operation_);
-    return result == null ? com.betPawa.wallet.proto.OPERATION.UNRECOGNIZED : result;
+  public com.betPawa.wallet.proto.Operation getOperation() {
+    com.betPawa.wallet.proto.Operation result = com.betPawa.wallet.proto.Operation.valueOf(operation_);
+    return result == null ? com.betPawa.wallet.proto.Operation.UNRECOGNIZED : result;
   }
 
   private byte memoizedIsInitialized = -1;
@@ -172,13 +172,13 @@ private static final long serialVersionUID = 0L;
 
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (status_ != com.betPawa.wallet.proto.STATUS.TRANSACTION_SUCCESS.getNumber()) {
+    if (status_ != com.betPawa.wallet.proto.Status.TRANSACTION_SUCCESS.getNumber()) {
       output.writeEnum(1, status_);
     }
     if (!getStatusMessageBytes().isEmpty()) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 2, statusMessage_);
     }
-    if (operation_ != com.betPawa.wallet.proto.OPERATION.DEPOSIT.getNumber()) {
+    if (operation_ != com.betPawa.wallet.proto.Operation.DEPOSIT.getNumber()) {
       output.writeEnum(3, operation_);
     }
     unknownFields.writeTo(output);
@@ -189,14 +189,14 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (status_ != com.betPawa.wallet.proto.STATUS.TRANSACTION_SUCCESS.getNumber()) {
+    if (status_ != com.betPawa.wallet.proto.Status.TRANSACTION_SUCCESS.getNumber()) {
       size += com.google.protobuf.CodedOutputStream
         .computeEnumSize(1, status_);
     }
     if (!getStatusMessageBytes().isEmpty()) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, statusMessage_);
     }
-    if (operation_ != com.betPawa.wallet.proto.OPERATION.DEPOSIT.getNumber()) {
+    if (operation_ != com.betPawa.wallet.proto.Operation.DEPOSIT.getNumber()) {
       size += com.google.protobuf.CodedOutputStream
         .computeEnumSize(3, operation_);
     }
@@ -477,13 +477,13 @@ private static final long serialVersionUID = 0L;
 
     private int status_ = 0;
     /**
-     * <code>.STATUS status = 1;</code>
+     * <code>.Status status = 1;</code>
      */
     public int getStatusValue() {
       return status_;
     }
     /**
-     * <code>.STATUS status = 1;</code>
+     * <code>.Status status = 1;</code>
      */
     public Builder setStatusValue(int value) {
       status_ = value;
@@ -491,16 +491,16 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.STATUS status = 1;</code>
+     * <code>.Status status = 1;</code>
      */
-    public com.betPawa.wallet.proto.STATUS getStatus() {
-      com.betPawa.wallet.proto.STATUS result = com.betPawa.wallet.proto.STATUS.valueOf(status_);
-      return result == null ? com.betPawa.wallet.proto.STATUS.UNRECOGNIZED : result;
+    public com.betPawa.wallet.proto.Status getStatus() {
+      com.betPawa.wallet.proto.Status result = com.betPawa.wallet.proto.Status.valueOf(status_);
+      return result == null ? com.betPawa.wallet.proto.Status.UNRECOGNIZED : result;
     }
     /**
-     * <code>.STATUS status = 1;</code>
+     * <code>.Status status = 1;</code>
      */
-    public Builder setStatus(com.betPawa.wallet.proto.STATUS value) {
+    public Builder setStatus(com.betPawa.wallet.proto.Status value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -510,7 +510,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.STATUS status = 1;</code>
+     * <code>.Status status = 1;</code>
      */
     public Builder clearStatus() {
       
@@ -590,13 +590,13 @@ private static final long serialVersionUID = 0L;
 
     private int operation_ = 0;
     /**
-     * <code>.OPERATION operation = 3;</code>
+     * <code>.Operation operation = 3;</code>
      */
     public int getOperationValue() {
       return operation_;
     }
     /**
-     * <code>.OPERATION operation = 3;</code>
+     * <code>.Operation operation = 3;</code>
      */
     public Builder setOperationValue(int value) {
       operation_ = value;
@@ -604,16 +604,16 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.OPERATION operation = 3;</code>
+     * <code>.Operation operation = 3;</code>
      */
-    public com.betPawa.wallet.proto.OPERATION getOperation() {
-      com.betPawa.wallet.proto.OPERATION result = com.betPawa.wallet.proto.OPERATION.valueOf(operation_);
-      return result == null ? com.betPawa.wallet.proto.OPERATION.UNRECOGNIZED : result;
+    public com.betPawa.wallet.proto.Operation getOperation() {
+      com.betPawa.wallet.proto.Operation result = com.betPawa.wallet.proto.Operation.valueOf(operation_);
+      return result == null ? com.betPawa.wallet.proto.Operation.UNRECOGNIZED : result;
     }
     /**
-     * <code>.OPERATION operation = 3;</code>
+     * <code>.Operation operation = 3;</code>
      */
-    public Builder setOperation(com.betPawa.wallet.proto.OPERATION value) {
+    public Builder setOperation(com.betPawa.wallet.proto.Operation value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -623,7 +623,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.OPERATION operation = 3;</code>
+     * <code>.Operation operation = 3;</code>
      */
     public Builder clearOperation() {
       

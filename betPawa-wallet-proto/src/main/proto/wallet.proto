@@ -6,29 +6,32 @@ option java_outer_classname = "WalletClass";
 option objc_class_prefix = "WC";
 
 service WalletService {
-  rpc deposit(BaseRequest) returns (BaseResponse) {}
-  rpc withdraw(BaseRequest) returns (BaseResponse) {}
-  rpc balance(BaseRequest) returns (BaseResponse) {}
+  rpc deposit (BaseRequest) returns (BaseResponse) {
+  }
+  rpc withdraw (BaseRequest) returns (BaseResponse) {
+  }
+  rpc balance (BaseRequest) returns (BaseResponse) {
+  }
 }
 
-enum STATUS {
-TRANSACTION_SUCCESS = 0;
-TRANSACTION_FAILED =1;
-}
- 
-enum OPERATION{
- DEPOSIT = 0;
- WITHDRAW = 1;
- BALANCE = 2;
+enum Status {
+  TRANSACTION_SUCCESS = 0;
+  TRANSACTION_FAILED = 1;
 }
 
-enum CURRENCY {
+enum Operation {
+  DEPOSIT = 0;
+  WITHDRAW = 1;
+  BALANCE = 2;
+}
+
+enum Currency {
   USD = 0;
-  EUR =1;
+  EUR = 1;
   GBP = 2;
 }
 
-enum StatusMessage{
+enum StatusMessage {
   USER_DOES_NOT_EXIST = 0;
   INVALID_ARGUMENTS = 1;
   INSUFFICIENT_BALANCE = 2;
@@ -36,15 +39,15 @@ enum StatusMessage{
   INVALID_CURRENCY = 4;
 }
 
-message BaseResponse{
-STATUS status = 1;
-string statusMessage = 2;
-OPERATION operation = 3;
+message BaseResponse {
+  Status status = 1;
+  string statusMessage = 2;
+  Operation operation = 3;
 }
 
 message BaseRequest {
   int64 userID = 1;
   string amount = 2;
-  CURRENCY currency = 3;	
+  Currency currency = 3;
 }
 

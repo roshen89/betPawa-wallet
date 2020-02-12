@@ -139,17 +139,17 @@ private static final long serialVersionUID = 0L;
   public static final int CURRENCY_FIELD_NUMBER = 3;
   private int currency_;
   /**
-   * <code>.CURRENCY currency = 3;</code>
+   * <code>.Currency currency = 3;</code>
    */
   public int getCurrencyValue() {
     return currency_;
   }
   /**
-   * <code>.CURRENCY currency = 3;</code>
+   * <code>.Currency currency = 3;</code>
    */
-  public com.betPawa.wallet.proto.CURRENCY getCurrency() {
-    com.betPawa.wallet.proto.CURRENCY result = com.betPawa.wallet.proto.CURRENCY.valueOf(currency_);
-    return result == null ? com.betPawa.wallet.proto.CURRENCY.UNRECOGNIZED : result;
+  public com.betPawa.wallet.proto.Currency getCurrency() {
+    com.betPawa.wallet.proto.Currency result = com.betPawa.wallet.proto.Currency.valueOf(currency_);
+    return result == null ? com.betPawa.wallet.proto.Currency.UNRECOGNIZED : result;
   }
 
   private byte memoizedIsInitialized = -1;
@@ -170,7 +170,7 @@ private static final long serialVersionUID = 0L;
     if (!getAmountBytes().isEmpty()) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 2, amount_);
     }
-    if (currency_ != com.betPawa.wallet.proto.CURRENCY.USD.getNumber()) {
+    if (currency_ != com.betPawa.wallet.proto.Currency.USD.getNumber()) {
       output.writeEnum(3, currency_);
     }
     unknownFields.writeTo(output);
@@ -188,7 +188,7 @@ private static final long serialVersionUID = 0L;
     if (!getAmountBytes().isEmpty()) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, amount_);
     }
-    if (currency_ != com.betPawa.wallet.proto.CURRENCY.USD.getNumber()) {
+    if (currency_ != com.betPawa.wallet.proto.Currency.USD.getNumber()) {
       size += com.google.protobuf.CodedOutputStream
         .computeEnumSize(3, currency_);
     }
@@ -566,13 +566,13 @@ private static final long serialVersionUID = 0L;
 
     private int currency_ = 0;
     /**
-     * <code>.CURRENCY currency = 3;</code>
+     * <code>.Currency currency = 3;</code>
      */
     public int getCurrencyValue() {
       return currency_;
     }
     /**
-     * <code>.CURRENCY currency = 3;</code>
+     * <code>.Currency currency = 3;</code>
      */
     public Builder setCurrencyValue(int value) {
       currency_ = value;
@@ -580,16 +580,16 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.CURRENCY currency = 3;</code>
+     * <code>.Currency currency = 3;</code>
      */
-    public com.betPawa.wallet.proto.CURRENCY getCurrency() {
-      com.betPawa.wallet.proto.CURRENCY result = com.betPawa.wallet.proto.CURRENCY.valueOf(currency_);
-      return result == null ? com.betPawa.wallet.proto.CURRENCY.UNRECOGNIZED : result;
+    public com.betPawa.wallet.proto.Currency getCurrency() {
+      com.betPawa.wallet.proto.Currency result = com.betPawa.wallet.proto.Currency.valueOf(currency_);
+      return result == null ? com.betPawa.wallet.proto.Currency.UNRECOGNIZED : result;
     }
     /**
-     * <code>.CURRENCY currency = 3;</code>
+     * <code>.Currency currency = 3;</code>
      */
-    public Builder setCurrency(com.betPawa.wallet.proto.CURRENCY value) {
+    public Builder setCurrency(com.betPawa.wallet.proto.Currency value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -599,7 +599,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.CURRENCY currency = 3;</code>
+     * <code>.Currency currency = 3;</code>
      */
     public Builder clearCurrency() {
       

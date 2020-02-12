@@ -4,8 +4,8 @@ import com.betPawa.wallet.client.dto.WalletClientRequest;
 import com.betPawa.wallet.client.service.ClientService;
 import com.betPawa.wallet.client.supplier.UserSupplier;
 import com.betPawa.wallet.proto.BaseResponse;
-import com.betPawa.wallet.proto.OPERATION;
-import com.betPawa.wallet.proto.STATUS;
+import com.betPawa.wallet.proto.Operation;
+import com.betPawa.wallet.proto.Status;
 import com.google.common.util.concurrent.ListenableFuture;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -25,13 +25,13 @@ public class WalletClientServiceImpl implements ClientService {
 
   private final UserSupplier userSupplier;
 
-  public Map<OPERATION, Map<STATUS, AtomicLong>> run(final WalletClientRequest walletClientRequest) {
+  public Map<Operation, Map<Status, AtomicLong>> run(final WalletClientRequest walletClientRequest) {
 
-    final Map<OPERATION, Map<STATUS, AtomicLong>> operationStatusMap = new EnumMap<>(OPERATION.class);
+    final Map<Operation, Map<Status, AtomicLong>> operationStatusMap = new EnumMap<>(Operation.class);
 
-    Arrays.stream(OPERATION.values()).forEach(op -> {
-      Map<STATUS, AtomicLong> statusMap = new EnumMap<>(STATUS.class);
-      Arrays.stream(STATUS.values()).forEach(val -> statusMap.put(val, new AtomicLong(0)));
+    Arrays.stream(Operation.values()).forEach(op -> {
+      Map<Status, AtomicLong> statusMap = new EnumMap<>(Status.class);
+      Arrays.stream(Status.values()).forEach(val -> statusMap.put(val, new AtomicLong(0)));
       operationStatusMap.put(op, statusMap);
     });
 
@@ -41,10 +41,10 @@ public class WalletClientServiceImpl implements ClientService {
       try {
         BaseResponse response = listenableFuture.get();
         log.info(roundsLFResponse.size() + ":  " + listenableFuture.get().getStatus().name(), listenableFuture.get().getStatusMessage());
-        operationStatusMap.get(response.getOperation()).get(STATUS.TRANSACTION_SUCCESS).incrementAndGet();
+        operationStatusMap.get(response.getOperation()).get(Status.TRANSACTION_SUCCESS).incrementAndGet();
       } catch (Exception e) {
         log.error(e.getMessage());
-        operationStatusMap.get(OPERATION.UNRECOGNIZED).get(STATUS.TRANSACTION_FAILED).incrementAndGet();
+        operationStatusMap.get(Operation.UNRECOGNIZED).get(Status.TRANSACTION_FAILED).incrementAndGet();
       }
     });
     log.info("operationStatusMap {}", operationStatusMap);

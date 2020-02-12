@@ -1,6 +1,6 @@
 package com.betPawa.walllet.server;
 
-import com.betPawa.wallet.proto.CURRENCY;
+import com.betPawa.wallet.proto.Currency;
 import com.betPawa.walllet.server.entity.Wallet;
 import com.betPawa.walllet.server.entity.WalletPK;
 import com.betPawa.walllet.server.repository.WalletRepository;
@@ -33,8 +33,8 @@ public class BetPawaWalletServerApplication {
     return args -> {
       repository.deleteAll();
       for (long i = 1; i <= numBerOfUsers; i++) {
-        for (int j = 0; j < CURRENCY.values().length - 1; j++) {
-          repository.save(new Wallet(new WalletPK(i, CURRENCY.forNumber(j)), BigDecimal.ZERO));
+        for (int j = 0; j < Currency.values().length - 1; j++) {
+          repository.save(new Wallet(new WalletPK(i, Currency.forNumber(j)), BigDecimal.ZERO));
         }
       }
       log.info("Initialized with {} users ", numBerOfUsers);

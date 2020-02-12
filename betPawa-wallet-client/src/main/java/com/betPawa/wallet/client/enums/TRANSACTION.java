@@ -4,7 +4,7 @@ import static com.google.common.util.concurrent.Futures.addCallback;
 
 import com.betPawa.wallet.proto.BaseRequest;
 import com.betPawa.wallet.proto.BaseResponse;
-import com.betPawa.wallet.proto.OPERATION;
+import com.betPawa.wallet.proto.Operation;
 import com.betPawa.wallet.proto.WalletServiceGrpc.WalletServiceFutureStub;
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.ListenableFuture;
@@ -25,7 +25,7 @@ public enum TRANSACTION {
 
         @Override
         public void onSuccess(BaseResponse result) {
-          result.toBuilder().setOperation(OPERATION.DEPOSIT);
+          result.toBuilder().setOperation(Operation.DEPOSIT);
           log.info("{} {}", result.getStatus().name(), result.getStatusMessage());
         }
 
@@ -47,7 +47,7 @@ public enum TRANSACTION {
       addCallback(response, new FutureCallback<BaseResponse>() {
         @Override
         public void onSuccess(BaseResponse result) {
-          result.toBuilder().setOperation(OPERATION.WITHDRAW);
+          result.toBuilder().setOperation(Operation.WITHDRAW);
           log.info("{} {}", result.getStatus().name(), result.getStatusMessage());
         }
 
@@ -69,7 +69,7 @@ public enum TRANSACTION {
       addCallback(response, new FutureCallback<BaseResponse>() {
         @Override
         public void onSuccess(BaseResponse result) {
-          result.toBuilder().setOperation(OPERATION.BALANCE);
+          result.toBuilder().setOperation(Operation.BALANCE);
           log.info("{} {}", result.getStatus().name(), result.getStatusMessage());
         }
 

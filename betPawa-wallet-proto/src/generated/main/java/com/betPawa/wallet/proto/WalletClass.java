@@ -34,13 +34,13 @@ public final class WalletClass {
   static {
     java.lang.String[] descriptorData = {
       "\n\014wallet.proto\"]\n\014BaseResponse\022\027\n\006status" +
-      "\030\001 \001(\0162\007.STATUS\022\025\n\rstatusMessage\030\002 \001(\t\022\035" +
-      "\n\toperation\030\003 \001(\0162\n.OPERATION\"J\n\013BaseReq" +
+      "\030\001 \001(\0162\007.Status\022\025\n\rstatusMessage\030\002 \001(\t\022\035" +
+      "\n\toperation\030\003 \001(\0162\n.Operation\"J\n\013BaseReq" +
       "uest\022\016\n\006userID\030\001 \001(\003\022\016\n\006amount\030\002 \001(\t\022\033\n\010" +
-      "currency\030\003 \001(\0162\t.CURRENCY*9\n\006STATUS\022\027\n\023T" +
+      "currency\030\003 \001(\0162\t.Currency*9\n\006Status\022\027\n\023T" +
       "RANSACTION_SUCCESS\020\000\022\026\n\022TRANSACTION_FAIL" +
-      "ED\020\001*3\n\tOPERATION\022\013\n\007DEPOSIT\020\000\022\014\n\010WITHDR" +
-      "AW\020\001\022\013\n\007BALANCE\020\002*%\n\010CURRENCY\022\007\n\003USD\020\000\022\007" +
+      "ED\020\001*3\n\tOperation\022\013\n\007DEPOSIT\020\000\022\014\n\010WITHDR" +
+      "AW\020\001\022\013\n\007BALANCE\020\002*%\n\010Currency\022\007\n\003USD\020\000\022\007" +
       "\n\003EUR\020\001\022\007\n\003GBP\020\002*\227\001\n\rStatusMessage\022\027\n\023US" +
       "ER_DOES_NOT_EXIST\020\000\022\025\n\021INVALID_ARGUMENTS" +
       "\020\001\022\030\n\024INSUFFICIENT_BALANCE\020\002\022&\n\"AMOUNT_S" +

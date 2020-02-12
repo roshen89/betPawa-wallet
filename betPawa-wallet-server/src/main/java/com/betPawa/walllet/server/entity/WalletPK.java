@@ -1,6 +1,6 @@
 package com.betPawa.walllet.server.entity;
 
-import com.betPawa.wallet.proto.CURRENCY;
+import com.betPawa.wallet.proto.Currency;
 import java.io.Serializable;
 import javax.persistence.Embeddable;
 import javax.persistence.EnumType;
@@ -26,7 +26,7 @@ public class WalletPK implements Serializable {
 
   @NotNull
   @Enumerated(EnumType.STRING)
-  private CURRENCY currency;
+  private Currency currency;
 
 
   @Override

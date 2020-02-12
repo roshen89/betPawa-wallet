@@ -6,8 +6,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import com.betPawa.wallet.client.dto.WalletClientRequest;
 import com.betPawa.wallet.client.dto.WalletClientResponse;
 import com.betPawa.wallet.client.service.impl.WalletClientServiceImpl;
-import com.betPawa.wallet.proto.OPERATION;
-import com.betPawa.wallet.proto.STATUS;
+import com.betPawa.wallet.proto.Operation;
+import com.betPawa.wallet.proto.Status;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.EnumMap;
 import java.util.Map;
@@ -34,7 +34,7 @@ public class WalletClientControllerTest {
   @Mock
   WalletClientServiceImpl clientService;
 
-  private Map<OPERATION, Map<STATUS, AtomicLong>> operationMapMap;
+  private Map<Operation, Map<Status, AtomicLong>> operationMapMap;
 
   private WalletClientRequest clientRequest;
   private WalletClientResponse clientResponse;
@@ -47,7 +47,7 @@ public class WalletClientControllerTest {
     this.mockMvc = MockMvcBuilders.standaloneSetup(clientController).build();
     mapper = new ObjectMapper();
     clientRequest = WalletClientRequest.builder().countOfRequests(1L).countOfRounds(1L).countOfUsers(100L).build();
-    operationMapMap = new EnumMap<>(OPERATION.class);
+    operationMapMap = new EnumMap<>(Operation.class);
     clientResponse = WalletClientResponse.builder().transactions(operationMapMap).timeTaken(0L).build();
   }
 

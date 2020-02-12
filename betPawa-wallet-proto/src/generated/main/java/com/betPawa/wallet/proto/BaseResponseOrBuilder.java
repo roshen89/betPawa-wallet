@@ -8,13 +8,13 @@ public interface BaseResponseOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>.STATUS status = 1;</code>
+   * <code>.Status status = 1;</code>
    */
   int getStatusValue();
   /**
-   * <code>.STATUS status = 1;</code>
+   * <code>.Status status = 1;</code>
    */
-  com.betPawa.wallet.proto.STATUS getStatus();
+  com.betPawa.wallet.proto.Status getStatus();
 
   /**
    * <code>string statusMessage = 2;</code>
@@ -27,11 +27,11 @@ public interface BaseResponseOrBuilder extends
       getStatusMessageBytes();
 
   /**
-   * <code>.OPERATION operation = 3;</code>
+   * <code>.Operation operation = 3;</code>
    */
   int getOperationValue();
   /**
-   * <code>.OPERATION operation = 3;</code>
+   * <code>.Operation operation = 3;</code>
    */
-  com.betPawa.wallet.proto.OPERATION getOperation();
+  com.betPawa.wallet.proto.Operation getOperation();
 }

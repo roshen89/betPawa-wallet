@@ -23,11 +23,11 @@ public interface BaseRequestOrBuilder extends
       getAmountBytes();
 
   /**
-   * <code>.CURRENCY currency = 3;</code>
+   * <code>.Currency currency = 3;</code>
    */
   int getCurrencyValue();
   /**
-   * <code>.CURRENCY currency = 3;</code>
+   * <code>.Currency currency = 3;</code>
    */
-  com.betPawa.wallet.proto.CURRENCY getCurrency();
+  com.betPawa.wallet.proto.Currency getCurrency();
 }

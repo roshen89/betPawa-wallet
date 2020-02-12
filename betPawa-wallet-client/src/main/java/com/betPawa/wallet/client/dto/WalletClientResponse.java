@@ -1,7 +1,7 @@
 package com.betPawa.wallet.client.dto;
 
-import com.betPawa.wallet.proto.OPERATION;
-import com.betPawa.wallet.proto.STATUS;
+import com.betPawa.wallet.proto.Operation;
+import com.betPawa.wallet.proto.Status;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
 import lombok.AllArgsConstructor;
@@ -13,7 +13,7 @@ import lombok.Getter;
 @AllArgsConstructor
 public final class WalletClientResponse {
 
-  private Map<OPERATION, Map<STATUS, AtomicLong>> transactions;
+  private Map<Operation, Map<Status, AtomicLong>> transactions;
   private Long timeTaken;
 
 }

@@ -4,9 +4,9 @@
 package com.betPawa.wallet.proto;
 
 /**
- * Protobuf enum {@code CURRENCY}
+ * Protobuf enum {@code Currency}
  */
-public enum CURRENCY
+public enum Currency
     implements com.google.protobuf.ProtocolMessageEnum {
   /**
    * <code>USD = 0;</code>
@@ -49,11 +49,11 @@ public enum CURRENCY
    * @deprecated Use {@link #forNumber(int)} instead.
    */
   @java.lang.Deprecated
-  public static CURRENCY valueOf(int value) {
+  public static Currency valueOf(int value) {
     return forNumber(value);
   }
 
-  public static CURRENCY forNumber(int value) {
+  public static Currency forNumber(int value) {
     switch (value) {
       case 0: return USD;
       case 1: return EUR;
@@ -62,15 +62,15 @@ public enum CURRENCY
     }
   }
 
-  public static com.google.protobuf.Internal.EnumLiteMap<CURRENCY>
+  public static com.google.protobuf.Internal.EnumLiteMap<Currency>
       internalGetValueMap() {
     return internalValueMap;
   }
   private static final com.google.protobuf.Internal.EnumLiteMap<
-      CURRENCY> internalValueMap =
-        new com.google.protobuf.Internal.EnumLiteMap<CURRENCY>() {
-          public CURRENCY findValueByNumber(int number) {
-            return CURRENCY.forNumber(number);
+      Currency> internalValueMap =
+        new com.google.protobuf.Internal.EnumLiteMap<Currency>() {
+          public Currency findValueByNumber(int number) {
+            return Currency.forNumber(number);
           }
         };
 
@@ -87,9 +87,9 @@ public enum CURRENCY
     return com.betPawa.wallet.proto.WalletClass.getDescriptor().getEnumTypes().get(2);
   }
 
-  private static final CURRENCY[] VALUES = values();
+  private static final Currency[] VALUES = values();
 
-  public static CURRENCY valueOf(
+  public static Currency valueOf(
       com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
     if (desc.getType() != getDescriptor()) {
       throw new java.lang.IllegalArgumentException(
@@ -103,10 +103,10 @@ public enum CURRENCY
 
   private final int value;
 
-  private CURRENCY(int value) {
+  private Currency(int value) {
     this.value = value;
   }
 
-  // @@protoc_insertion_point(enum_scope:CURRENCY)
+  // @@protoc_insertion_point(enum_scope:Currency)
 }
 

@@ -4,9 +4,9 @@
 package com.betPawa.wallet.proto;
 
 /**
- * Protobuf enum {@code OPERATION}
+ * Protobuf enum {@code Operation}
  */
-public enum OPERATION
+public enum Operation
     implements com.google.protobuf.ProtocolMessageEnum {
   /**
    * <code>DEPOSIT = 0;</code>
@@ -49,11 +49,11 @@ public enum OPERATION
    * @deprecated Use {@link #forNumber(int)} instead.
    */
   @java.lang.Deprecated
-  public static OPERATION valueOf(int value) {
+  public static Operation valueOf(int value) {
     return forNumber(value);
   }
 
-  public static OPERATION forNumber(int value) {
+  public static Operation forNumber(int value) {
     switch (value) {
       case 0: return DEPOSIT;
       case 1: return WITHDRAW;
@@ -62,15 +62,15 @@ public enum OPERATION
     }
   }
 
-  public static com.google.protobuf.Internal.EnumLiteMap<OPERATION>
+  public static com.google.protobuf.Internal.EnumLiteMap<Operation>
       internalGetValueMap() {
     return internalValueMap;
   }
   private static final com.google.protobuf.Internal.EnumLiteMap<
-      OPERATION> internalValueMap =
-        new com.google.protobuf.Internal.EnumLiteMap<OPERATION>() {
-          public OPERATION findValueByNumber(int number) {
-            return OPERATION.forNumber(number);
+      Operation> internalValueMap =
+        new com.google.protobuf.Internal.EnumLiteMap<Operation>() {
+          public Operation findValueByNumber(int number) {
+            return Operation.forNumber(number);
           }
         };
 
@@ -87,9 +87,9 @@ public enum OPERATION
     return com.betPawa.wallet.proto.WalletClass.getDescriptor().getEnumTypes().get(1);
   }
 
-  private static final OPERATION[] VALUES = values();
+  private static final Operation[] VALUES = values();
 
-  public static OPERATION valueOf(
+  public static Operation valueOf(
       com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
     if (desc.getType() != getDescriptor()) {
       throw new java.lang.IllegalArgumentException(
@@ -103,10 +103,10 @@ public enum OPERATION
 
   private final int value;
 
-  private OPERATION(int value) {
+  private Operation(int value) {
     this.value = value;
   }
 
-  // @@protoc_insertion_point(enum_scope:OPERATION)
+  // @@protoc_insertion_point(enum_scope:Operation)
 }
 

@@ -2,7 +2,7 @@ package server.dto;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.betPawa.wallet.proto.CURRENCY;
+import com.betPawa.wallet.proto.Currency;
 import com.betPawa.walllet.server.BetPawaWalletServerApplication;
 import com.betPawa.walllet.server.dto.BalanceResponseDTO;
 import com.betPawa.walllet.server.entity.Wallet;
@@ -28,10 +28,19 @@ public class BalanceResponseDTOTest {
   private List<Wallet> walletList = new ArrayList<>();
 
   @Before
-  public void setUp() throws Exception {
-    Wallet wallet1 = (new Wallet(new WalletPK(1L, CURRENCY.EUR), (BigDecimal.TEN)));
-    Wallet wallet2 = (new Wallet(new WalletPK(1L, CURRENCY.USD), (BigDecimal.TEN)));
-    Wallet wallet3 = (new Wallet(new WalletPK(1L, CURRENCY.GBP), BigDecimal.ZERO));
+  public void setUp() {
+    Wallet wallet1 = Wallet.builder()
+        .walletPK(WalletPK.builder().currency(Currency.EUR).userID(1L).build())
+        .balance(BigDecimal.TEN)
+        .build();
+    Wallet wallet2 = Wallet.builder()
+        .walletPK(WalletPK.builder().currency(Currency.USD).userID(1L).build())
+        .balance(BigDecimal.TEN)
+        .build();
+    Wallet wallet3 = Wallet.builder()
+        .walletPK(WalletPK.builder().currency(Currency.GBP).userID(1L).build())
+        .balance(BigDecimal.ZERO)
+        .build();
 
     walletList.add(wallet1);
     walletList.add(wallet2);
@@ -39,16 +48,16 @@ public class BalanceResponseDTOTest {
   }
 
   @Test
-  public void testGetBalanceAsString() throws Exception {
+  public void testGetBalanceAsString() {
     assertThat(dto.getBalanceAsString(walletList)).isNotEmpty();
   }
 
   @Test
-  public void testGetBalanceResponseDTOFromString() throws Exception {
+  public void testGetBalanceResponseDTOFromString() {
     BalanceResponseDTO responseDTO = dto.getBalanceResponseDTOFromString(dto.getBalanceAsString(walletList));
     assertThat(responseDTO).isNotNull();
     assertThat(responseDTO.getBalance().size()).isEqualTo(3);
-    assertThat(responseDTO.getBalance().get(CURRENCY.GBP)).isEqualTo(BigDecimal.ZERO.toPlainString());
+    assertThat(responseDTO.getBalance().get(Currency.GBP)).isEqualTo(BigDecimal.ZERO.toPlainString());
   }
 
 }

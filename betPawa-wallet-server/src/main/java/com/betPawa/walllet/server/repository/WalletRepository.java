@@ -1,6 +1,6 @@
 package com.betPawa.walllet.server.repository;
 
-import com.betPawa.wallet.proto.CURRENCY;
+import com.betPawa.wallet.proto.Currency;
 import com.betPawa.walllet.server.entity.Wallet;
 import com.betPawa.walllet.server.entity.WalletPK;
 import java.util.List;
@@ -19,6 +19,6 @@ public interface WalletRepository extends JpaRepository<Wallet, WalletPK> {
 
   @Transactional(readOnly = true)
   @Query("select w from Wallet w where w.walletPK.userID =:userID and w.walletPK.currency=:currency")
-  Optional<Wallet> getUserWalletsByCurrencyAndUserID(@Param("userID") Long userID, @Param("currency") CURRENCY currency);
+  Optional<Wallet> getUserWalletsByCurrencyAndUserID(@Param("userID") Long userID, @Param("currency") Currency currency);
 
 }

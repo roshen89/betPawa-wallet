@@ -7,8 +7,8 @@ import com.betPawa.wallet.client.dto.BalanceResponseDTO;
 import com.betPawa.wallet.client.enums.TRANSACTION;
 import com.betPawa.wallet.proto.BaseRequest;
 import com.betPawa.wallet.proto.BaseResponse;
-import com.betPawa.wallet.proto.CURRENCY;
-import com.betPawa.wallet.proto.STATUS;
+import com.betPawa.wallet.proto.Currency;
+import com.betPawa.wallet.proto.Status;
 import com.betPawa.wallet.proto.StatusMessage;
 import com.betPawa.wallet.proto.WalletServiceGrpc.WalletServiceFutureStub;
 import com.google.common.util.concurrent.ListenableFuture;
@@ -46,29 +46,29 @@ public class IntegrationTest {
   }
 
   @Test
-  public void tests() throws InterruptedException, ExecutionException {
-    test_withdraw_TwoHundred_USD();
+  public void walletTransactionTests() throws InterruptedException, ExecutionException {
+    test_withdraw_TwoHundred_USD(BigDecimal.valueOf(200), Currency.USD);
     test_deposit_HUNDERD_USD();
     test_checkUSDBalance();
-    test_withdraw_TwoHundred_USD();
+    test_withdraw_TwoHundred_USD(BigDecimal.valueOf(200), Currency.USD);
     test_deposit_HUNDERD_EUR();
     test_checkAllBalances();
-    test_withdraw_TwoHundred_USD();
+    test_withdraw_TwoHundred_USD(BigDecimal.valueOf(200), Currency.USD);
     test_deposit_HUNDERD_USD();
     test9();
     test_withdraw_TwoHundred_USD_SUCCESS();
     test11();
-    test_withdraw_TwoHundred_USD();
+    test_withdraw_TwoHundred_USD(BigDecimal.valueOf(200), Currency.USD);
   }
 
-  private void test_withdraw_TwoHundred_USD() throws InterruptedException {
+  private void test_withdraw_TwoHundred_USD(BigDecimal amount, Currency currency) throws InterruptedException {
     ListenableFuture<BaseResponse> futureResponse;
     futureResponse = TRANSACTION.WITHDRAW.doTransact(
         futureStub,
         BaseRequest.newBuilder()
             .setUserID(userID)
-            .setAmount(BigDecimal.valueOf(200).toPlainString())
-            .setCurrency(CURRENCY.USD)
+            .setAmount(amount.toPlainString())
+            .setCurrency(currency)
             .build(),
         taskExecutor);
     try {
@@ -86,18 +86,18 @@ public class IntegrationTest {
         BaseRequest.newBuilder()
             .setUserID(userID)
             .setAmount(BigDecimal.valueOf(100).toPlainString())
-            .setCurrency(CURRENCY.USD)
+            .setCurrency(Currency.USD)
             .build(),
         taskExecutor);
     response = futureResponse.get();
-    assertThat(response.getStatus().name()).contains(STATUS.TRANSACTION_SUCCESS.name());
+    assertThat(response.getStatus().name()).contains(Status.TRANSACTION_SUCCESS.name());
   }
 
   private void test_checkUSDBalance() throws InterruptedException, ExecutionException {
     BaseResponse response = getBalanceForTestUser();
     BalanceResponseDTO balanceResponseDTO = new Gson().fromJson(response.getStatusMessage(), BalanceResponseDTO.class);
 
-    assertThat(new BigDecimal(balanceResponseDTO.getBalance().get(CURRENCY.USD)).compareTo(BigDecimal.valueOf(100)) == 0)
+    assertThat(new BigDecimal(balanceResponseDTO.getBalance().get(Currency.USD)).compareTo(BigDecimal.valueOf(100)) == 0)
         .isTrue();
   }
 
@@ -109,11 +109,11 @@ public class IntegrationTest {
         BaseRequest.newBuilder()
             .setUserID(userID)
             .setAmount(BigDecimal.valueOf(100).toPlainString())
-            .setCurrency(CURRENCY.EUR)
+            .setCurrency(Currency.EUR)
             .build(),
         taskExecutor);
     response = futureResponse.get();
-    assertThat(response.getStatus().name()).contains(STATUS.TRANSACTION_SUCCESS.name());
+    assertThat(response.getStatus().name()).contains(Status.TRANSACTION_SUCCESS.name());
   }
 
   private void test_checkAllBalances() throws InterruptedException, ExecutionException {
@@ -121,9 +121,9 @@ public class IntegrationTest {
 
     BalanceResponseDTO balanceResponseDTO = new Gson().fromJson(response.getStatusMessage(), BalanceResponseDTO.class);
 
-    assertThat(new BigDecimal(balanceResponseDTO.getBalance().get(CURRENCY.USD)).compareTo(BigDecimal.valueOf(100)) == 0)
+    assertThat(new BigDecimal(balanceResponseDTO.getBalance().get(Currency.USD)).compareTo(BigDecimal.valueOf(100)) == 0)
         .isTrue();
-    assertThat(new BigDecimal(balanceResponseDTO.getBalance().get(CURRENCY.EUR)).compareTo(BigDecimal.valueOf(100)) == 0)
+    assertThat(new BigDecimal(balanceResponseDTO.getBalance().get(Currency.EUR)).compareTo(BigDecimal.valueOf(100)) == 0)
         .isTrue();
 
   }
@@ -132,9 +132,9 @@ public class IntegrationTest {
     BaseResponse response = getBalanceForTestUser();
     BalanceResponseDTO balanceResponseDTO = new Gson().fromJson(response.getStatusMessage(), BalanceResponseDTO.class);
 
-    assertThat(new BigDecimal(balanceResponseDTO.getBalance().get(CURRENCY.USD)).compareTo(BigDecimal.valueOf(200)) == 0)
+    assertThat(new BigDecimal(balanceResponseDTO.getBalance().get(Currency.USD)).compareTo(BigDecimal.valueOf(200)) == 0)
         .isTrue();
-    assertThat(new BigDecimal(balanceResponseDTO.getBalance().get(CURRENCY.EUR)).compareTo(BigDecimal.valueOf(100)) == 0)
+    assertThat(new BigDecimal(balanceResponseDTO.getBalance().get(Currency.EUR)).compareTo(BigDecimal.valueOf(100)) == 0)
         .isTrue();
 
   }
@@ -147,11 +147,11 @@ public class IntegrationTest {
         BaseRequest.newBuilder()
             .setUserID(userID)
             .setAmount(BigDecimal.valueOf(200).toPlainString())
-            .setCurrency(CURRENCY.USD)
+            .setCurrency(Currency.USD)
             .build(),
         taskExecutor);
     response = futureResponse.get();
-    assertThat(response.getStatus().name()).contains(STATUS.TRANSACTION_SUCCESS.name());
+    assertThat(response.getStatus().name()).contains(Status.TRANSACTION_SUCCESS.name());
 
   }
 
@@ -159,9 +159,9 @@ public class IntegrationTest {
     BaseResponse response = getBalanceForTestUser();
     BalanceResponseDTO balanceResponseDTO = new Gson().fromJson(response.getStatusMessage(), BalanceResponseDTO.class);
     assertThat(
-        new BigDecimal(balanceResponseDTO.getBalance().get(CURRENCY.USD)).compareTo(BigDecimal.valueOf(0)) == 0).isTrue();
+        new BigDecimal(balanceResponseDTO.getBalance().get(Currency.USD)).compareTo(BigDecimal.valueOf(0)) == 0).isTrue();
     assertThat(
-        new BigDecimal(balanceResponseDTO.getBalance().get(CURRENCY.EUR)).compareTo(BigDecimal.valueOf(100)) == 0).isTrue();
+        new BigDecimal(balanceResponseDTO.getBalance().get(Currency.EUR)).compareTo(BigDecimal.valueOf(100)) == 0).isTrue();
 
   }
 

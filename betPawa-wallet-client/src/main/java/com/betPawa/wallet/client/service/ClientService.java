@@ -6,11 +6,13 @@ import com.betPawa.wallet.proto.Status;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
 
-
+/**
+ * Client Service allows a user to manage scenario on Engine.
+ */
 public interface ClientService {
 
    /**
-    *
+    *The method
     * @param walletClientRequest
     * @return Map<OPERATION, Map<STATUS, AtomicLong>>
     */

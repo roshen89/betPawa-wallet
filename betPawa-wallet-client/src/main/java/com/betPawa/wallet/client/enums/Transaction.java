@@ -14,7 +14,7 @@ import org.springframework.core.task.TaskExecutor;
 import org.springframework.lang.NonNull;
 
 @Slf4j
-public enum TRANSACTION {
+public enum Transaction {
 
   DEPOSIT {
     @Override

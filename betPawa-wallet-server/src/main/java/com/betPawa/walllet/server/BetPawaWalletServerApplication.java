@@ -5,6 +5,7 @@ import com.betPawa.walllet.server.entity.Wallet;
 import com.betPawa.walllet.server.entity.WalletPK;
 import com.betPawa.walllet.server.repository.WalletRepository;
 import java.math.BigDecimal;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -18,10 +19,10 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 @EnableRetry
 @Slf4j
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class BetPawaWalletServerApplication {
 
-  @Autowired
-  WalletRepository repository;
+  private final WalletRepository repository;
 
   public static void main(String[] args) {
     SpringApplication.run(BetPawaWalletServerApplication.class, args);

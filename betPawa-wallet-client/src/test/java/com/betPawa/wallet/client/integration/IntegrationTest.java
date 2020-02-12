@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import com.betPawa.wallet.client.BetPawaWalletClientApplication;
 import com.betPawa.wallet.client.dto.BalanceResponseDTO;
-import com.betPawa.wallet.client.enums.TRANSACTION;
+import com.betPawa.wallet.client.enums.Transaction;
 import com.betPawa.wallet.proto.BaseRequest;
 import com.betPawa.wallet.proto.BaseResponse;
 import com.betPawa.wallet.proto.Currency;
@@ -35,42 +35,66 @@ public class IntegrationTest {
   @Autowired
   private TaskExecutor taskExecutor;
 
-  @Autowired
-  private BalanceResponseDTO dto;
-
-  private Long userID = 1L;
+  private Long userID;
 
   @Before
   public void setUp() throws InterruptedException, ExecutionException {
+    userID = 1L;
     resetBalanceToZeroForTestUser();
   }
 
   @Test
   public void walletTransactionTests() throws InterruptedException, ExecutionException {
-    test_withdraw_TwoHundred_USD(BigDecimal.valueOf(200), Currency.USD);
-    test_deposit_HUNDERD_USD();
-    test_checkUSDBalance();
-    test_withdraw_TwoHundred_USD(BigDecimal.valueOf(200), Currency.USD);
-    test_deposit_HUNDERD_EUR();
-    test_checkAllBalances();
-    test_withdraw_TwoHundred_USD(BigDecimal.valueOf(200), Currency.USD);
-    test_deposit_HUNDERD_USD();
-    test9();
-    test_withdraw_TwoHundred_USD_SUCCESS();
-    test11();
-    test_withdraw_TwoHundred_USD(BigDecimal.valueOf(200), Currency.USD);
-  }
 
-  private void test_withdraw_TwoHundred_USD(BigDecimal amount, Currency currency) throws InterruptedException {
-    ListenableFuture<BaseResponse> futureResponse;
-    futureResponse = TRANSACTION.WITHDRAW.doTransact(
-        futureStub,
-        BaseRequest.newBuilder()
-            .setUserID(userID)
-            .setAmount(amount.toPlainString())
-            .setCurrency(currency)
-            .build(),
-        taskExecutor);
+    ListenableFuture<BaseResponse> futureResponse = withdraw(BigDecimal.valueOf(200), Currency.USD);
+    try {
+      System.out.println(futureResponse.get());
+    } catch (ExecutionException e) {
+      assertThat(e.getMessage()).contains(StatusMessage.INSUFFICIENT_BALANCE.name());
+    }
+
+    BaseResponse response = deposit(BigDecimal.valueOf(100), Currency.USD);
+    assertThat(response.getStatus().name()).contains(Status.TRANSACTION_SUCCESS.name());
+
+    BalanceResponseDTO balanceResponseDTO = getBalances();
+    assertThat(new BigDecimal(balanceResponseDTO.getBalance().get(Currency.USD)).compareTo(BigDecimal.valueOf(100)) == 0).isTrue();
+
+    futureResponse = withdraw(BigDecimal.valueOf(200), Currency.USD);
+    try {
+      System.out.println(futureResponse.get());
+    } catch (ExecutionException e) {
+      assertThat(e.getMessage()).contains(StatusMessage.INSUFFICIENT_BALANCE.name());
+    }
+
+    response = deposit(BigDecimal.valueOf(100), Currency.EUR);
+    assertThat(response.getStatus().name()).contains(Status.TRANSACTION_SUCCESS.name());
+
+    balanceResponseDTO = getBalances();
+    assertThat(new BigDecimal(balanceResponseDTO.getBalance().get(Currency.USD)).compareTo(BigDecimal.valueOf(100)) == 0).isTrue();
+    assertThat(new BigDecimal(balanceResponseDTO.getBalance().get(Currency.EUR)).compareTo(BigDecimal.valueOf(100)) == 0).isTrue();
+
+    futureResponse = withdraw(BigDecimal.valueOf(200), Currency.USD);
+    try {
+      System.out.println(futureResponse.get());
+    } catch (ExecutionException e) {
+      assertThat(e.getMessage()).contains(StatusMessage.INSUFFICIENT_BALANCE.name());
+    }
+
+    response = deposit(BigDecimal.valueOf(100), Currency.USD);
+    assertThat(response.getStatus().name()).contains(Status.TRANSACTION_SUCCESS.name());
+
+    balanceResponseDTO = getBalances();
+    assertThat(new BigDecimal(balanceResponseDTO.getBalance().get(Currency.USD)).compareTo(BigDecimal.valueOf(200)) == 0).isTrue();
+    assertThat(new BigDecimal(balanceResponseDTO.getBalance().get(Currency.EUR)).compareTo(BigDecimal.valueOf(100)) == 0).isTrue();
+
+    futureResponse = withdraw(BigDecimal.valueOf(200), Currency.USD);
+    assertThat(futureResponse.get().getStatus().name()).contains(Status.TRANSACTION_SUCCESS.name());
+
+    balanceResponseDTO = getBalances();
+    assertThat(new BigDecimal(balanceResponseDTO.getBalance().get(Currency.USD)).compareTo(BigDecimal.valueOf(0)) == 0).isTrue();
+    assertThat(new BigDecimal(balanceResponseDTO.getBalance().get(Currency.EUR)).compareTo(BigDecimal.valueOf(100)) == 0).isTrue();
+
+    futureResponse = withdraw(BigDecimal.valueOf(200), Currency.USD);
     try {
       System.out.println(futureResponse.get());
     } catch (ExecutionException e) {
@@ -78,97 +102,38 @@ public class IntegrationTest {
     }
   }
 
-  private void test_deposit_HUNDERD_USD() throws InterruptedException, ExecutionException {
-    ListenableFuture<BaseResponse> futureResponse;
-    BaseResponse response;
-    futureResponse = TRANSACTION.DEPOSIT.doTransact(
+  private ListenableFuture<BaseResponse> withdraw(BigDecimal amount, Currency currency) {
+    return Transaction.WITHDRAW.doTransact(
         futureStub,
         BaseRequest.newBuilder()
             .setUserID(userID)
-            .setAmount(BigDecimal.valueOf(100).toPlainString())
-            .setCurrency(Currency.USD)
+            .setAmount(amount.toPlainString())
+            .setCurrency(currency)
             .build(),
         taskExecutor);
-    response = futureResponse.get();
-    assertThat(response.getStatus().name()).contains(Status.TRANSACTION_SUCCESS.name());
   }
 
-  private void test_checkUSDBalance() throws InterruptedException, ExecutionException {
-    BaseResponse response = getBalanceForTestUser();
-    BalanceResponseDTO balanceResponseDTO = new Gson().fromJson(response.getStatusMessage(), BalanceResponseDTO.class);
-
-    assertThat(new BigDecimal(balanceResponseDTO.getBalance().get(Currency.USD)).compareTo(BigDecimal.valueOf(100)) == 0)
-        .isTrue();
-  }
-
-  private void test_deposit_HUNDERD_EUR() throws InterruptedException, ExecutionException {
-    ListenableFuture<BaseResponse> futureResponse;
-    BaseResponse response;
-    futureResponse = TRANSACTION.DEPOSIT.doTransact(
+  private BaseResponse deposit(BigDecimal amount, Currency currency) throws InterruptedException, ExecutionException {
+    ListenableFuture<BaseResponse> futureResponse = Transaction.DEPOSIT.doTransact(
         futureStub,
         BaseRequest.newBuilder()
             .setUserID(userID)
-            .setAmount(BigDecimal.valueOf(100).toPlainString())
-            .setCurrency(Currency.EUR)
+            .setAmount(amount.toPlainString())
+            .setCurrency(currency)
             .build(),
         taskExecutor);
-    response = futureResponse.get();
-    assertThat(response.getStatus().name()).contains(Status.TRANSACTION_SUCCESS.name());
+    return futureResponse.get();
   }
 
-  private void test_checkAllBalances() throws InterruptedException, ExecutionException {
+  private BalanceResponseDTO getBalances() throws InterruptedException, ExecutionException {
     BaseResponse response = getBalanceForTestUser();
-
-    BalanceResponseDTO balanceResponseDTO = new Gson().fromJson(response.getStatusMessage(), BalanceResponseDTO.class);
-
-    assertThat(new BigDecimal(balanceResponseDTO.getBalance().get(Currency.USD)).compareTo(BigDecimal.valueOf(100)) == 0)
-        .isTrue();
-    assertThat(new BigDecimal(balanceResponseDTO.getBalance().get(Currency.EUR)).compareTo(BigDecimal.valueOf(100)) == 0)
-        .isTrue();
-
-  }
-
-  private void test9() throws InterruptedException, ExecutionException {
-    BaseResponse response = getBalanceForTestUser();
-    BalanceResponseDTO balanceResponseDTO = new Gson().fromJson(response.getStatusMessage(), BalanceResponseDTO.class);
-
-    assertThat(new BigDecimal(balanceResponseDTO.getBalance().get(Currency.USD)).compareTo(BigDecimal.valueOf(200)) == 0)
-        .isTrue();
-    assertThat(new BigDecimal(balanceResponseDTO.getBalance().get(Currency.EUR)).compareTo(BigDecimal.valueOf(100)) == 0)
-        .isTrue();
-
-  }
-
-  private void test_withdraw_TwoHundred_USD_SUCCESS() throws InterruptedException, ExecutionException {
-    ListenableFuture<BaseResponse> futureResponse;
-    BaseResponse response;
-    futureResponse = TRANSACTION.WITHDRAW.doTransact(
-        futureStub,
-        BaseRequest.newBuilder()
-            .setUserID(userID)
-            .setAmount(BigDecimal.valueOf(200).toPlainString())
-            .setCurrency(Currency.USD)
-            .build(),
-        taskExecutor);
-    response = futureResponse.get();
-    assertThat(response.getStatus().name()).contains(Status.TRANSACTION_SUCCESS.name());
-
-  }
-
-  private void test11() throws InterruptedException, ExecutionException {
-    BaseResponse response = getBalanceForTestUser();
-    BalanceResponseDTO balanceResponseDTO = new Gson().fromJson(response.getStatusMessage(), BalanceResponseDTO.class);
-    assertThat(
-        new BigDecimal(balanceResponseDTO.getBalance().get(Currency.USD)).compareTo(BigDecimal.valueOf(0)) == 0).isTrue();
-    assertThat(
-        new BigDecimal(balanceResponseDTO.getBalance().get(Currency.EUR)).compareTo(BigDecimal.valueOf(100)) == 0).isTrue();
-
+    return new Gson().fromJson(response.getStatusMessage(), BalanceResponseDTO.class);
   }
 
   private BaseResponse getBalanceForTestUser() throws InterruptedException, ExecutionException {
     ListenableFuture<BaseResponse> futureResponse;
     BaseResponse response;
-    futureResponse = TRANSACTION.BALANCE.doTransact(futureStub, BaseRequest.newBuilder().setUserID(userID).build(), taskExecutor);
+    futureResponse = Transaction.BALANCE.doTransact(futureStub, BaseRequest.newBuilder().setUserID(userID).build(), taskExecutor);
     response = futureResponse.get();
     return response;
   }
@@ -179,19 +144,15 @@ public class IntegrationTest {
     withdrawAllFromTestUserWallet(balanceResponseDTO);
   }
 
-
   private void withdrawAllFromTestUserWallet(BalanceResponseDTO dto) {
-    dto.getBalance().entrySet().stream().filter(es -> new BigDecimal(es.getValue()).compareTo(BigDecimal.ZERO) > 0
-
-    ).forEach(es -> {
+    dto.getBalance().entrySet().stream().filter(es -> new BigDecimal(es.getValue()).compareTo(BigDecimal.ZERO) > 0).forEach(es -> {
       try {
-        TRANSACTION.WITHDRAW.doTransact(futureStub,
+        Transaction.WITHDRAW.doTransact(futureStub,
             BaseRequest.newBuilder().setUserID(userID).setAmount(es.getValue()).setCurrency(es.getKey()).build(),
             taskExecutor).get();
       } catch (InterruptedException | ExecutionException e) {
         e.printStackTrace();
       }
-
     });
   }
 

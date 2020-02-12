@@ -1,6 +1,6 @@
 package com.betPawa.wallet.client.supplier;
 
-import com.betPawa.wallet.client.enums.ROUND;
+import com.betPawa.wallet.client.enums.Round;
 import com.betPawa.wallet.proto.BaseResponse;
 import com.betPawa.wallet.proto.WalletServiceGrpc.WalletServiceFutureStub;
 import com.google.common.util.concurrent.ListenableFuture;
@@ -33,7 +33,7 @@ public class RoundSupplier implements Supplier<List<ListenableFuture<BaseRespons
   public List<ListenableFuture<BaseResponse>> get() {
     final List<ListenableFuture<BaseResponse>> round = new ArrayList<>();
     for (int i = 0; i < numberOfRounds; i++) {
-      round.addAll(ROUND.values()[ThreadLocalRandom.current().nextInt(0, (ROUND.values().length))]
+      round.addAll(Round.values()[ThreadLocalRandom.current().nextInt(0, (Round.values().length))]
           .goExecute(walletServiceFutureStub, userID, taskExecutor));
     }
     return round;

@@ -146,7 +146,6 @@ Script: `start-bp-wallet-docker.bat`
 * Client Side - Task Executor is Configurable with Concurrent Worker Threads.
 * The `BetPawaWallet` is shared with Client and Server.
 * Synchronization or any code level locking on DB has been avoided as there can be multiple instances running.
-* `Optimistic Locking` via `@Version` annotation is implemented for `Concurrency` (Which can also be configured for retry mechanism[Disabled for Now])
 * There are Still Some `Race Conditions` in `BetPawaWalletServer`.
 * User Registration: N number User are registered with Zero Balance at application startup (This is done to avoid user not found exception and to support Integration tests. This is a bare-bone approach and only adopted due to RAPID).
 
@@ -171,13 +170,6 @@ Then there are other scenarios with multiple users with multiple transactions - 
 * MYSQL DB: Although mysql can handle 150+1 Connections , for that the calling system should be of very high configurations, The current application configures the Connection Pool Max Size to be 10 based `Number of Cores * 2 + Max(tX Spindle time)`
 * Dockerized MYSQL DB: This makes a delta of 5-10 %.
 	
-#### Database Connection Pooling Variant:
-	
-* HIKARI:If the number of transaction grows > 400 HCP starts getting `Connection Not Available`, to avoid this the session state was properly synced with DB using flush in finally block.The connection time out was tweaked to 3 Minutes from default.This alone is not sufficient there need to be Data replication in MYSQL with Application Caching for outstanding performance which OOS.For better performance a dynamically resizing DB connection pooling mechanism is needed .. `Flexy-pool` fits here but OOS.
-* Apache:OOS
-	
-
-
 ### Integration Test
 
     1.  Make a withdrawal of USD 200 for user with id 1. Must return "insufficient_funds".

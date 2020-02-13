@@ -97,7 +97,6 @@ Based on GoogleRPC and Protocol Buffer - a multithreaded Asynchronous Applicatio
 * The Client/Server Doesn't retry failed transactions. OOS
 * The user ID is Taken from Number of Users param (userID:1 for numberOfuser=1,userID:1,userID:2 for numberOfuser=2).
 * Database schema has been kept Simple with One table.
-* The actual applicable schema is included in `Future Aspiration Section` with SQL and Schema Diagram.
 * The Service Response/Request has been kept same for `RAPID (Rapid Application Development in Pro-typing)` Otherwise it should be different for each transaction type example /docs/wallet.proto.
 * Implements limited caching  `spring-caching` although not bench-marked, it will play a crucial role with expanding user base.
 
@@ -122,7 +121,6 @@ Run server as Spring Boot Application.
 
 ##### Docker
 	
-Script: `start-bp-wallet-docker.bat`
 	
 #### JAVA(betPawa-wallet-client)
 
@@ -132,7 +130,7 @@ Run client as Spring Boot Application.
 
 ##### Docker 
 
-Script: `start-bp-wallet-docker.bat`
+
 	
 ---
 
@@ -144,14 +142,8 @@ Script: `start-bp-wallet-docker.bat`
 * The Performance Tuning variables are not yet externalized.
 * Server Side - Connection Pooling Configurations(Depends on Given Deployment Platform).
 * Client Side - Task Executor is Configurable with Concurrent Worker Threads.
-* The `BetPawaWallet` is shared with Client and Server.
-* Synchronization or any code level locking on DB has been avoided as there can be multiple instances running.
-* There are Still Some `Race Conditions` in `BetPawaWalletServer`.
-* User Registration: N number User are registered with Zero Balance at application startup (This is done to avoid user not found exception and to support Integration tests. This is a bare-bone approach and only adopted due to RAPID).
 
 ### Transactions Per Seconds[TPS].
-
-Its Pandora's Box !! Can have Numerous Permutation & Combination with each variant, and requires performance tuning and monitoring to reach a common objective or to handle any `future spikes`.
 
 #### Per Transaction Variant:
 

@@ -15,10 +15,10 @@ import org.springframework.transaction.annotation.Transactional;
 public interface WalletRepository extends JpaRepository<Wallet, WalletPK> {
 
   @Transactional(readOnly = true)
-  Optional<List<Wallet>> findByWalletPK_UserID(Long userID);
+  Optional<List<Wallet>> findByUserId(Long userId);
 
   @Transactional(readOnly = true)
-  @Query("select w from Wallet w where w.walletPK.userID =:userID and w.walletPK.currency=:currency")
-  Optional<Wallet> getUserWalletsByCurrencyAndUserID(@Param("userID") Long userID, @Param("currency") Currency currency);
+  @Query("select w from Wallet w where w.walletPK.userId =:userId and w.walletPK.currency=:currency")
+  Optional<Wallet> getUserWalletsByCurrencyAndUserId(@Param("userId") Long userId, @Param("currency") Currency currency);
 
 }

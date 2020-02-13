@@ -22,7 +22,7 @@ public class WalletPK implements Serializable {
   private static final long serialVersionUID = -8849946668166588603L;
   @NotNull
   @Size(max = 20)
-  private Long userID;
+  private Long userId;
 
   @NotNull
   @Enumerated(EnumType.STRING)
@@ -34,7 +34,7 @@ public class WalletPK implements Serializable {
     final int prime = 31;
     int result = 1;
     result = prime * result + ((currency == null) ? 0 : currency.hashCode());
-    result = prime * result + ((userID == null) ? 0 : userID.hashCode());
+    result = prime * result + ((userId == null) ? 0 : userId.hashCode());
     return result;
   }
 
@@ -53,10 +53,10 @@ public class WalletPK implements Serializable {
     if (currency != other.currency) {
       return false;
     }
-    if (userID == null) {
-      return other.userID == null;
+    if (userId == null) {
+      return other.userId == null;
     } else {
-      return userID.equals(other.userID);
+      return userId.equals(other.userId);
     }
   }
 

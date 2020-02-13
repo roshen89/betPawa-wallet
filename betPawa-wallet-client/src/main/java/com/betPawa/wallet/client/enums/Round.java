@@ -14,36 +14,36 @@ public enum Round {
 
   A {
     @Override
-    public List<ListenableFuture<BaseResponse>> goExecute(final WalletServiceFutureStub futureStub,
+    public List<ListenableFuture<BaseResponse>> execute(final WalletServiceFutureStub futureStub,
         final Long userID, final TaskExecutor taskExecutor) {
       List<ListenableFuture<BaseResponse>> list = new ArrayList<>();
 
-      list.add(Transaction.DEPOSIT.doTransact(
+      list.add(Transaction.DEPOSIT.transact(
           futureStub, BaseRequest.newBuilder().setUserID(userID)
               .setAmount(BigDecimal.valueOf(100).toPlainString()).setCurrency(Currency.USD).build(),
           taskExecutor));
 
-      list.add(Transaction.WITHDRAW.doTransact(futureStub, BaseRequest.newBuilder().setUserID(userID)
+      list.add(Transaction.WITHDRAW.transact(futureStub, BaseRequest.newBuilder().setUserID(userID)
               .setAmount(BigDecimal.valueOf(200).toPlainString()).setCurrency(Currency.USD).build(),
           taskExecutor));
 
-      list.add(Transaction.DEPOSIT.doTransact(
+      list.add(Transaction.DEPOSIT.transact(
           futureStub, BaseRequest.newBuilder().setUserID(userID)
               .setAmount(BigDecimal.valueOf(100).toPlainString()).setCurrency(Currency.EUR).build(),
           taskExecutor));
 
-      list.add(Transaction.BALANCE.doTransact(futureStub, BaseRequest.newBuilder().setUserID(userID).build(),
+      list.add(Transaction.BALANCE.transact(futureStub, BaseRequest.newBuilder().setUserID(userID).build(),
           taskExecutor));
 
-      list.add(Transaction.WITHDRAW.doTransact(
+      list.add(Transaction.WITHDRAW.transact(
           futureStub, BaseRequest.newBuilder().setUserID(userID)
               .setAmount(BigDecimal.valueOf(100).toPlainString()).setCurrency(Currency.USD).build(),
           taskExecutor));
 
-      list.add(Transaction.BALANCE.doTransact(futureStub, BaseRequest.newBuilder().setUserID(userID).build(),
+      list.add(Transaction.BALANCE.transact(futureStub, BaseRequest.newBuilder().setUserID(userID).build(),
           taskExecutor));
 
-      list.add(Transaction.WITHDRAW.doTransact(
+      list.add(Transaction.WITHDRAW.transact(
           futureStub, BaseRequest.newBuilder().setUserID(userID)
               .setAmount(BigDecimal.valueOf(100).toPlainString()).setCurrency(Currency.USD).build(),
           taskExecutor));
@@ -54,42 +54,42 @@ public enum Round {
 
   B {
     @Override
-    public List<ListenableFuture<BaseResponse>> goExecute(final WalletServiceFutureStub futureStub,
+    public List<ListenableFuture<BaseResponse>> execute(final WalletServiceFutureStub futureStub,
         final Long userID, final TaskExecutor taskExecutor) {
       List<ListenableFuture<BaseResponse>> list = new ArrayList<>();
 
-      list.add(Transaction.WITHDRAW.doTransact(
+      list.add(Transaction.WITHDRAW.transact(
           futureStub, BaseRequest.newBuilder().setUserID(userID)
               .setAmount(BigDecimal.valueOf(100).toPlainString()).setCurrency(Currency.GBP).build(),
           taskExecutor));
 
-      list.add(Transaction.DEPOSIT.doTransact(futureStub,
+      list.add(Transaction.DEPOSIT.transact(futureStub,
           BaseRequest.newBuilder().setUserID(userID)
               .setAmount(BigDecimal.valueOf(300).toPlainString()).setCurrency(Currency.GBP)
               .build(),
           taskExecutor));
 
-      list.add(Transaction.WITHDRAW.doTransact(
+      list.add(Transaction.WITHDRAW.transact(
           futureStub, BaseRequest.newBuilder().setUserID(userID)
               .setAmount(BigDecimal.valueOf(100).toPlainString()).setCurrency(Currency.GBP).build(),
           taskExecutor));
 
-      list.add(Transaction.WITHDRAW.doTransact(
+      list.add(Transaction.WITHDRAW.transact(
           futureStub, BaseRequest.newBuilder().setUserID(userID)
               .setAmount(BigDecimal.valueOf(100).toPlainString()).setCurrency(Currency.GBP).build(),
           taskExecutor));
 
-      list.add(Transaction.WITHDRAW.doTransact(
+      list.add(Transaction.WITHDRAW.transact(
           futureStub, BaseRequest.newBuilder().setUserID(userID)
               .setAmount(BigDecimal.valueOf(100).toPlainString()).setCurrency(Currency.GBP).build(),
           taskExecutor));
 
-      list.add(Transaction.WITHDRAW.doTransact(
+      list.add(Transaction.WITHDRAW.transact(
           futureStub, BaseRequest.newBuilder().setUserID(userID)
               .setAmount(BigDecimal.valueOf(100).toPlainString()).setCurrency(Currency.GBP).build(),
           taskExecutor));
 
-      list.add(Transaction.WITHDRAW.doTransact(
+      list.add(Transaction.WITHDRAW.transact(
           futureStub, BaseRequest.newBuilder().setUserID(userID)
               .setAmount(BigDecimal.valueOf(100).toPlainString()).setCurrency(Currency.GBP).build(),
           taskExecutor));
@@ -100,49 +100,49 @@ public enum Round {
 
   C {
     @Override
-    public List<ListenableFuture<BaseResponse>> goExecute(final WalletServiceFutureStub futureStub,
+    public List<ListenableFuture<BaseResponse>> execute(final WalletServiceFutureStub futureStub,
         final Long userID, final TaskExecutor taskExecutor) {
       List<ListenableFuture<BaseResponse>> list = new ArrayList<>();
 
-      list.add(Transaction.BALANCE.doTransact(futureStub, BaseRequest.newBuilder().setUserID(userID).build(),
+      list.add(Transaction.BALANCE.transact(futureStub, BaseRequest.newBuilder().setUserID(userID).build(),
           taskExecutor));
 
-      list.add(Transaction.DEPOSIT.doTransact(
+      list.add(Transaction.DEPOSIT.transact(
           futureStub, BaseRequest.newBuilder().setUserID(userID)
               .setAmount(BigDecimal.valueOf(100).toPlainString()).setCurrency(Currency.USD).build(),
           taskExecutor));
 
-      list.add(Transaction.DEPOSIT.doTransact(
+      list.add(Transaction.DEPOSIT.transact(
           futureStub, BaseRequest.newBuilder().setUserID(userID)
               .setAmount(BigDecimal.valueOf(100).toPlainString()).setCurrency(Currency.USD).build(),
           taskExecutor));
 
-      list.add(Transaction.WITHDRAW.doTransact(
+      list.add(Transaction.WITHDRAW.transact(
           futureStub, BaseRequest.newBuilder().setUserID(userID)
               .setAmount(BigDecimal.valueOf(100).toPlainString()).setCurrency(Currency.USD).build(),
           taskExecutor));
 
-      list.add(Transaction.DEPOSIT.doTransact(
+      list.add(Transaction.DEPOSIT.transact(
           futureStub, BaseRequest.newBuilder().setUserID(userID)
               .setAmount(BigDecimal.valueOf(100).toPlainString()).setCurrency(Currency.USD).build(),
           taskExecutor));
 
-      list.add(Transaction.BALANCE.doTransact(futureStub, BaseRequest.newBuilder().setUserID(userID).build(),
+      list.add(Transaction.BALANCE.transact(futureStub, BaseRequest.newBuilder().setUserID(userID).build(),
           taskExecutor));
 
-      list.add(Transaction.WITHDRAW.doTransact(
+      list.add(Transaction.WITHDRAW.transact(
           futureStub, BaseRequest.newBuilder().setUserID(userID)
               .setAmount(BigDecimal.valueOf(100).toPlainString()).setCurrency(Currency.USD).build(),
           taskExecutor));
 
-      list.add(Transaction.BALANCE.doTransact(futureStub, BaseRequest.newBuilder().setUserID(userID).build(),
+      list.add(Transaction.BALANCE.transact(futureStub, BaseRequest.newBuilder().setUserID(userID).build(),
           taskExecutor));
 
       return list;
     }
   };
 
-  public abstract List<ListenableFuture<BaseResponse>> goExecute(final WalletServiceFutureStub futureStub,
+  public abstract List<ListenableFuture<BaseResponse>> execute(final WalletServiceFutureStub futureStub,
       final Long userID, final TaskExecutor taskExecutor);
 
 }

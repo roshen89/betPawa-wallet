@@ -30,15 +30,15 @@ public class BalanceResponseDTOTest {
   @Before
   public void setUp() {
     Wallet wallet1 = Wallet.builder()
-        .walletPK(WalletPK.builder().currency(Currency.EUR).userID(1L).build())
+        .walletPK(WalletPK.builder().currency(Currency.EUR).userId(1L).build())
         .balance(BigDecimal.TEN)
         .build();
     Wallet wallet2 = Wallet.builder()
-        .walletPK(WalletPK.builder().currency(Currency.USD).userID(1L).build())
+        .walletPK(WalletPK.builder().currency(Currency.USD).userId(1L).build())
         .balance(BigDecimal.TEN)
         .build();
     Wallet wallet3 = Wallet.builder()
-        .walletPK(WalletPK.builder().currency(Currency.GBP).userID(1L).build())
+        .walletPK(WalletPK.builder().currency(Currency.GBP).userId(1L).build())
         .balance(BigDecimal.ZERO)
         .build();
 

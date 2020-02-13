@@ -34,7 +34,7 @@ public class RoundSupplier implements Supplier<List<ListenableFuture<BaseRespons
     final List<ListenableFuture<BaseResponse>> round = new ArrayList<>();
     for (int i = 0; i < numberOfRounds; i++) {
       round.addAll(Round.values()[ThreadLocalRandom.current().nextInt(0, (Round.values().length))]
-          .goExecute(walletServiceFutureStub, userID, taskExecutor));
+          .execute(walletServiceFutureStub, userID, taskExecutor));
     }
     return round;
   }

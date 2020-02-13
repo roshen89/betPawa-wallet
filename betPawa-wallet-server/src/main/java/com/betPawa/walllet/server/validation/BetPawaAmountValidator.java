@@ -8,12 +8,11 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
 @Component
-public class BetPawaAmountValidator implements BetPawaBaseValidator<BigDecimal> {
+public class BetPawaAmountValidator implements BetPawaValidator {
 
   public void validate(final String amount) {
     if (StringUtils.isEmpty(amount)) {
       throw new BetPawaException(Status.FAILED_PRECONDITION, StatusMessage.INVALID_ARGUMENTS);
-
     }
     checkAmountFormat(amount);
     checkAmountGreaterThanZero(new BigDecimal(amount));
@@ -39,5 +38,4 @@ public class BetPawaAmountValidator implements BetPawaBaseValidator<BigDecimal> 
       throw new BetPawaException(Status.FAILED_PRECONDITION, StatusMessage.INSUFFICIENT_BALANCE);
     }
   }
-
 }

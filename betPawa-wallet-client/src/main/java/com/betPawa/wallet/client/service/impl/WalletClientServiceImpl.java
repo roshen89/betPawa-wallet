@@ -28,13 +28,11 @@ public class WalletClientServiceImpl implements ClientService {
   public Map<Operation, Map<Status, AtomicLong>> run(final WalletClientRequest walletClientRequest) {
 
     final Map<Operation, Map<Status, AtomicLong>> operationStatusMap = new EnumMap<>(Operation.class);
-
     Arrays.stream(Operation.values()).forEach(op -> {
       Map<Status, AtomicLong> statusMap = new EnumMap<>(Status.class);
       Arrays.stream(Status.values()).forEach(val -> statusMap.put(val, new AtomicLong(0)));
       operationStatusMap.put(op, statusMap);
     });
-
     userSupplier.setWalletClientRequest(walletClientRequest);
     final List<ListenableFuture<BaseResponse>> roundsLFResponse = new ArrayList<>(userSupplier.get());
     roundsLFResponse.forEach(listenableFuture -> {

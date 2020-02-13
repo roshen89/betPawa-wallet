@@ -7,14 +7,14 @@ import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
- * Client Service allows a user to manage scenario on Engine.
+ * Client Service will emulate a number of users concurrently using the wallet.
  */
 public interface ClientService {
 
-   /**
-    *The method
-    * @param walletClientRequest
-    * @return Map<OPERATION, Map<STATUS, AtomicLong>>
-    */
-   Map<Operation, Map<Status, AtomicLong>> run(final WalletClientRequest walletClientRequest);
+  /**
+   * The method get walletClientRequest as input and after execute it stores response to Map<Operation, Map<Status, AtomicLong>>
+   *
+   * @return Map<OPERATION, Map < STATUS, AtomicLong>>
+   */
+  Map<Operation, Map<Status, AtomicLong>> run(final WalletClientRequest walletClientRequest);
 }

@@ -18,7 +18,7 @@ public enum Transaction {
 
   DEPOSIT {
     @Override
-    public ListenableFuture<BaseResponse> doTransact(final WalletServiceFutureStub futureStub, final BaseRequest baseRequest,
+    public ListenableFuture<BaseResponse> transact(final WalletServiceFutureStub futureStub, final BaseRequest baseRequest,
         final TaskExecutor taskExecutor) {
       ListenableFuture<BaseResponse> response = futureStub.deposit(baseRequest);
       addCallback(response, new FutureCallback<BaseResponse>() {
@@ -40,8 +40,8 @@ public enum Transaction {
   },
   WITHDRAW {
     @Override
-    public ListenableFuture<BaseResponse> doTransact(final WalletServiceFutureStub futureStub,
-        final BaseRequest baseRequest, final TaskExecutor taskExecutor) {
+    public ListenableFuture<BaseResponse> transact(final WalletServiceFutureStub futureStub, final BaseRequest baseRequest,
+        final TaskExecutor taskExecutor) {
       ListenableFuture<BaseResponse> response = futureStub.withdraw(baseRequest);
 
       addCallback(response, new FutureCallback<BaseResponse>() {
@@ -62,10 +62,9 @@ public enum Transaction {
   },
   BALANCE {
     @Override
-    public ListenableFuture<BaseResponse> doTransact(final WalletServiceFutureStub futureStub,
-        final BaseRequest baseRequest, final TaskExecutor taskExecutor) {
+    public ListenableFuture<BaseResponse> transact(final WalletServiceFutureStub futureStub, final BaseRequest baseRequest,
+        final TaskExecutor taskExecutor) {
       ListenableFuture<BaseResponse> response = futureStub.balance(baseRequest);
-
       addCallback(response, new FutureCallback<BaseResponse>() {
         @Override
         public void onSuccess(BaseResponse result) {
@@ -82,6 +81,6 @@ public enum Transaction {
     }
   };
 
-  public abstract ListenableFuture<BaseResponse> doTransact(final WalletServiceFutureStub futureStub,
+  public abstract ListenableFuture<BaseResponse> transact(final WalletServiceFutureStub futureStub,
       final BaseRequest baseRequest, final TaskExecutor taskExecutor);
 }

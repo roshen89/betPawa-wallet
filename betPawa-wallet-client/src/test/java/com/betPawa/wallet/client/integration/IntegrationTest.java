@@ -103,7 +103,7 @@ public class IntegrationTest {
   }
 
   private ListenableFuture<BaseResponse> withdraw(BigDecimal amount, Currency currency) {
-    return Transaction.WITHDRAW.doTransact(
+    return Transaction.WITHDRAW.transact(
         futureStub,
         BaseRequest.newBuilder()
             .setUserID(userID)
@@ -114,7 +114,7 @@ public class IntegrationTest {
   }
 
   private BaseResponse deposit(BigDecimal amount, Currency currency) throws InterruptedException, ExecutionException {
-    ListenableFuture<BaseResponse> futureResponse = Transaction.DEPOSIT.doTransact(
+    ListenableFuture<BaseResponse> futureResponse = Transaction.DEPOSIT.transact(
         futureStub,
         BaseRequest.newBuilder()
             .setUserID(userID)
@@ -133,7 +133,7 @@ public class IntegrationTest {
   private BaseResponse getBalanceForTestUser() throws InterruptedException, ExecutionException {
     ListenableFuture<BaseResponse> futureResponse;
     BaseResponse response;
-    futureResponse = Transaction.BALANCE.doTransact(futureStub, BaseRequest.newBuilder().setUserID(userID).build(), taskExecutor);
+    futureResponse = Transaction.BALANCE.transact(futureStub, BaseRequest.newBuilder().setUserID(userID).build(), taskExecutor);
     response = futureResponse.get();
     return response;
   }
@@ -147,7 +147,7 @@ public class IntegrationTest {
   private void withdrawAllFromTestUserWallet(BalanceResponseDTO dto) {
     dto.getBalance().entrySet().stream().filter(es -> new BigDecimal(es.getValue()).compareTo(BigDecimal.ZERO) > 0).forEach(es -> {
       try {
-        Transaction.WITHDRAW.doTransact(futureStub,
+        Transaction.WITHDRAW.transact(futureStub,
             BaseRequest.newBuilder().setUserID(userID).setAmount(es.getValue()).setCurrency(es.getKey()).build(),
             taskExecutor).get();
       } catch (InterruptedException | ExecutionException e) {

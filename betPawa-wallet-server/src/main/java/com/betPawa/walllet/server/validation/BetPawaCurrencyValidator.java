@@ -7,7 +7,7 @@ import io.grpc.Status;
 import org.springframework.stereotype.Component;
 
 @Component
-public class BetPawaCurrencyValidator implements BetPawaBaseValidator<Currency> {
+public class BetPawaCurrencyValidator implements BetPawaValidator {
 
   public void checkCurrency(final Currency currency) {
     if (currency.equals(Currency.UNRECOGNIZED)) {

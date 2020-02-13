@@ -80,15 +80,18 @@ public class WalletServerService extends WalletServiceGrpc.WalletServiceImplBase
   public void balance(final BaseRequest request, final StreamObserver<BaseResponse> responseObserver) {
     log.info("Request Received for UserID:{}", request.getUserID());
     try {
-      Optional<List<Wallet>> userWallets = walletRepository.findByWalletPK_UserID(request.getUserID());
-      userWallets.ifPresent(bpWalletValidator::validate);
+      Optional<List<Wallet>> userWallets = walletRepository.findByUserId(request.getUserID());
+      userWallets.ifPresent(bpWalletValidator::validateWallets);
       String balance = null;
       if (userWallets.isPresent()) {
         balance = balanceResponseDTO.getBalanceAsString(userWallets.get());
       }
       log.info(balance);
-      responseObserver.onNext(BaseResponse.newBuilder().setStatusMessage(balance)
-          .setStatus((Status.TRANSACTION_SUCCESS)).setOperation(Operation.BALANCE).build());
+      responseObserver.onNext(BaseResponse.newBuilder()
+          .setStatusMessage(balance)
+          .setStatus((Status.TRANSACTION_SUCCESS))
+          .setOperation(Operation.BALANCE)
+          .build());
       responseObserver.onCompleted();
     } catch (BetPawaException e) {
       log.error(e.getErrorStatus().name());
@@ -110,14 +113,12 @@ public class WalletServerService extends WalletServiceGrpc.WalletServiceImplBase
   }
 
   private void successResponse(final StreamObserver<BaseResponse> responseObserver, Operation operation) {
-    responseObserver.onNext(
-        BaseResponse.newBuilder().setStatus(Status.TRANSACTION_SUCCESS).setOperation(operation).build());
+    responseObserver.onNext(BaseResponse.newBuilder().setStatus(Status.TRANSACTION_SUCCESS).setOperation(operation).build());
     responseObserver.onCompleted();
   }
 
   private Optional<Wallet> getUserWallet(final BaseRequest request) {
-    return walletRepository.getUserWalletsByCurrencyAndUserID(request.getUserID(),
-        request.getCurrency());
+    return walletRepository.getUserWalletsByCurrencyAndUserId(request.getUserID(), request.getCurrency());
   }
 
   private void updateWallet(final BigDecimal newBalance, final Wallet wallet) {

@@ -15,7 +15,8 @@ import org.springframework.transaction.annotation.Transactional;
 public interface WalletRepository extends JpaRepository<Wallet, WalletPK> {
 
   @Transactional(readOnly = true)
-  Optional<List<Wallet>> findByUserId(Long userId);
+  @Query("select w from Wallet w where w.walletPK.userId =:userId")
+  Optional<List<Wallet>> findByUserId(@Param("userId") Long userId);
 
   @Transactional(readOnly = true)
   @Query("select w from Wallet w where w.walletPK.userId =:userId and w.walletPK.currency=:currency")

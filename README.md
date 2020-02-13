@@ -2,19 +2,9 @@
 
 # betPawa-wallet 
 
-
 Based on GoogleRPC and Protocol Buffer - a multithreaded Asynchronous Application that Allows Deposit, Withdrawal and Get Balance for the users.Project consists of a Wallet server and Wallet client.The wallet server will keep track of a users monetary balance in the system. The client will emulate users depositing and withdrawing funds.
 
-| Function       | Input                    | Output                     | Error 
-| 
-| Deposit        | UserId, Amount, Currency | Success/Failure            | Unknown Currency , User Unknown
-| Withdraw       | UserId, Amount, Currency | Success/Failure            | Unknown Currency , User Unknown
-| Get Balance    | UserId                   | Balances for each currency | User Unknown 
-
-`Currency (Values are EUR, USD, GBP)`
-
 ---
-
 
 ### Sub Modules 
 
@@ -114,26 +104,22 @@ Based on GoogleRPC and Protocol Buffer - a multithreaded Asynchronous Applicatio
 
 ---
 
-### How to run `BPWS` and `BPWC` (run `gradlew.bat build` or `gradle build` in root project. first)
+### How to run `BetPawaWalletServer` and `BetPawaWalletClient`
 
 #### Database
 
 ##### LOCAL 
 
+Hibernate/ auto create betpawa db / imports.sql for initial datas
 
 ##### DOCKER
 
-Script: `start-bp-wallet-mysql-docker.bat `
-
-	Run above in root folder it takes 5-10 Minutes to come up.
-	Execute following command to get the IP of docker-machine  bash#docker-machine -ip
-	Make Sure MYSQL or Any DB is UP and its properties are configured in `application.yaml`
 	
 #### JAVA(betPawa-wallet-server)
 
 ##### LOCAL 
 
-Script: `start-bp-wallet-server.bat` 
+Run server as Spring Boot Application.
 
 ##### Docker
 	
@@ -143,7 +129,7 @@ Script: `start-bp-wallet-docker.bat`
 
 ##### LOCAL 
 
-Script: `start-bp-wallet-client.bat`
+Run client as Spring Boot Application.
 
 ##### Docker 
 
@@ -159,13 +145,11 @@ Script: `start-bp-wallet-docker.bat`
 * The Performance Tuning variables are not yet externalized.
 * Server Side - Connection Pooling Configurations(Depends on Given Deployment Platform).
 * Client Side - Task Executor is Configurable with Concurrent Worker Threads.
-* The `BPWP` is shared with Client and Server.
+* The `BetPawaWallet` is shared with Client and Server.
 * Synchronization or any code level locking on DB has been avoided as there can be multiple instances running.
 * `Optimistic Locking` via `@Version` annotation is implemented for `Concurrency` (Which can also be configured for retry mechanism[Disabled for Now])
-* There are Still Some `Race Conditions` in `BPWS`.
+* There are Still Some `Race Conditions` in `BetPawaWalletServer`.
 * User Registration: N number User are registered with Zero Balance at application startup (This is done to avoid user not found exception and to support Integration tests. This is a bare-bone approach and only adopted due to RAPID).
-* For Improved performance `Logging` has been minimized via debug or disabled in `application.yaml` .
-* Some of the Decisions and choices are evident from TPS section.
 
 ### Transactions Per Seconds[TPS].
 

@@ -148,6 +148,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/betPawa-wallet-client/src/main/java/com/betPawa/wallet/client/enums/Round.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/betPawa-wallet-client/src/main/java/com/betPawa/wallet/client/enums/TRANSACTION.java">
           <value>
             <set />
@@ -383,6 +388,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/betPawa-wallet-server/src/main/java/com/betPawa/walllet/server/validation/BetPawaValidator.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/betPawa-wallet-server/src/main/java/com/betPawa/walllet/server/validation/BetPawaWalletValidator.java">
           <value>
             <set />
@@ -399,6 +409,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/betPawa-wallet-server/src/main/resources/banner.txt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/betPawa-wallet-server/src/main/resources/import.sql">
           <value>
             <set />
           </value>

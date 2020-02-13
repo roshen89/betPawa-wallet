@@ -63,12 +63,12 @@ Based on GoogleRPC and Protocol Buffer - a multithreaded Asynchronous Applicatio
     
 ## betPawa-wallet-server
 
-    Records balance in user Wallet.
-    Expose API for Depositing Money, Withdrawing and Getting Balance in different currencies.
+*    Records balance in user Wallet.
+*   Expose API for Depositing Money, Withdrawing and Getting Balance in different currencies.
     
 ## betPawa-wallet-proto
     
-    Has proto file(.proto), Generated Stubs and Domains shared by BetPawaWalletClient and BetPawaWalletServer.
+*   Has proto file(.proto), Generated Stubs and Domains shared by BetPawaWalletClient and BetPawaWalletServer.
 
 ---
 
@@ -110,28 +110,19 @@ Based on GoogleRPC and Protocol Buffer - a multithreaded Asynchronous Applicatio
 
 Hibernate/ auto create betpawa db / imports.sql for initial datas
 
-##### DOCKER
-
-	
 #### JAVA(betPawa-wallet-server)
 
 ##### LOCAL 
 
 Run server as Spring Boot Application.
 
-##### Docker
-	
-	
 #### JAVA(betPawa-wallet-client)
 
 ##### LOCAL 
 
 Run client as Spring Boot Application.
+Use Swagger for test
 
-##### Docker 
-
-
-	
 ---
 
 ### Important choices in Solution

@@ -78,7 +78,7 @@ Based on GoogleRPC and Protocol Buffer - a multithreaded Asynchronous Applicatio
     
 ## betPawa-wallet-proto
     
-    Has proto file(.proto), Generated Stubs and Domains shared by BPWC and BPWS.
+    Has proto file(.proto), Generated Stubs and Domains shared by BetPawaWalletClient and BetPawaWalletServer.
 
 ---
 
@@ -88,7 +88,6 @@ Based on GoogleRPC and Protocol Buffer - a multithreaded Asynchronous Applicatio
 * About "Make sure the client exits when all rounds has been executed."
 
   * betPawa-wallet-client exposes SWAGGER API for Testing.
-  * CLI Command: Not Implemented
   
 * Technologies
 
@@ -186,7 +185,6 @@ Then there are other scenarios with multiple users with multiple transactions - 
 
 #### Database Variant:
 	
-* Embedded H2 DB:only used for RAPID.
 * MYSQL DB: Although mysql can handle 150+1 Connections , for that the calling system should be of very high configurations, The current application configures the Connection Pool Max Size to be 10 based `Number of Cores * 2 + Max(tX Spindle time)`
 * Dockerized MYSQL DB: This makes a delta of 5-10 %.
 	

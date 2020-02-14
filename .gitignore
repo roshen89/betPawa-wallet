@@ -2,3 +2,6 @@
 /.gradle/buildOutputCleanup/
 /.gradle/
 /build/
+/betPawa-wallet-proto/build/
+/betPawa-wallet-server/build/
+/betPawa-wallet-client/build/

@@ -20,6 +20,7 @@ import lombok.NoArgsConstructor;
 public class WalletPK implements Serializable {
 
   private static final long serialVersionUID = -8849946668166588603L;
+
   @NotNull
   @Size(max = 20)
   private Long userId;

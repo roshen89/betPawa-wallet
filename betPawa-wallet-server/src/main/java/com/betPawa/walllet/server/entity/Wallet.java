@@ -23,6 +23,7 @@ public class Wallet implements Serializable {
 
   @EmbeddedId
   private WalletPK walletPK;
+
   @NotNull
   private BigDecimal balance;
 

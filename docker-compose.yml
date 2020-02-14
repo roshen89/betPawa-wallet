@@ -14,8 +14,8 @@ services:
       - db
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/betPawa?createDatabaseIfNotExist=true&useSSL=false&useUnicode=yes&characterEncoding=UTF-8
-      SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD: root12
+      SPRING_DATASOURCE_USERNAME: rovsen
+      SPRING_DATASOURCE_PASSWORD: rovsen
     networks:
       - server
       - client
@@ -41,9 +41,9 @@ services:
     restart: always
     environment:
       MYSQL_DATABASE: betPawa
-      MYSQL_USER: root
-      MYSQL_PASSWORD: root12
-      MYSQL_ROOT_PASSWORD: root12
+      MYSQL_USER: rovsen
+      MYSQL_PASSWORD: rovsen
+      MYSQL_ROOT_PASSWORD: root
     volumes:
       - db-data:/var/lib/mysql
     networks:

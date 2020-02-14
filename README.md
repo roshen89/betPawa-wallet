@@ -128,7 +128,6 @@ Use Swagger for test
 * The Whole Structure of the BetPawa-wallet application is loosely coupled SOA.
 * Each Client,Server,DB Instances are developed keeping Scalability,Elasticity and Fault tolerance in mind.
 * Docker Instances make it possible to enable containerization and Helps in Deployments.
-* The Performance Tuning variables are not yet externalized.
 * Server Side - Connection Pooling Configurations(Depends on Given Deployment Platform).
 * Client Side - Task Executor is Configurable with Concurrent Worker Threads.
 

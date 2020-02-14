@@ -1,5 +1,12 @@
 apply plugin: 'org.springframework.boot'
 
+jar {
+    manifest {
+        attributes 'Main-Class': 'com.betPawa.wallet.client.BetPawaWalletClientApplication'
+    }
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+}
+
 dependencies {
     compile('org.springframework.boot:spring-boot-starter-web')
     compile("net.devh:grpc-client-spring-boot-starter:${springBootGrpcVersion}")
@@ -15,8 +22,4 @@ buildscript {
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
     }
-}
-
-bootJar {
-    mainClassName = 'com.betPawa.wallet.client.BetPawaWalletClientApplication'
 }

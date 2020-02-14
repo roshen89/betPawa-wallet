@@ -6,4 +6,4 @@ COPY /betPawa-wallet-client/build/libs/betPawa-wallet-client.jar /app/betPawa-wa
 
 CMD ["java", "-jar", "/app/betPawa-wallet-client.jar"]
 
-EXPOSE 9090
+EXPOSE 8080

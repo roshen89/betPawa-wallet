@@ -98,8 +98,6 @@ Based on GoogleRPC and Protocol Buffer - a multithreaded Asynchronous Applicatio
 * The user ID is Taken from Number of Users param (userID:1 for numberOfuser=1,userID:1,userID:2 for numberOfuser=2).
 * Database schema has been kept Simple with One table.
 * The Service Response/Request has been kept same for `RAPID (Rapid Application Development in Pro-typing)` Otherwise it should be different for each transaction type example /docs/wallet.proto.
-* Implements limited caching  `spring-caching` although not bench-marked, it will play a crucial role with expanding user base.
-
 ---
 
 ### How to run `BetPawaWalletServer` and `BetPawaWalletClient`

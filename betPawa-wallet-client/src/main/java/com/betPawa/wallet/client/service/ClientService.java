@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
- * Client Service will emulate a number of users concurrently using the wallet.
+ * Client Service will emulate a number of users concurrently using the wallet depositing and withdrawing funds.
  */
 public interface ClientService {
 
